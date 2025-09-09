@@ -1,15 +1,20 @@
 import Navigation from "@/components/Navigation";
+import VisitorStats from "@/components/VisitorStats";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroCharacter from "@/assets/hero-character.png";
 
 const Index = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="min-h-screen bg-gradient-soft">
       <Navigation />
+      <VisitorStats />
       
       <main className="flex flex-col items-center justify-center min-h-screen px-8 pt-16">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-extralight text-foreground mb-6 tracking-wide">
-            Hi there!
+            {t("Hi there!")}
           </h1>
         </div>
         
@@ -23,7 +28,7 @@ const Index = () => {
         
         <div className="mt-16 text-center">
           <p className="text-lg text-muted-foreground font-light">
-            Welcome to my little corner of the internet
+            {t("I'm a designer and developer who loves creating beautiful, functional experiences.")}
           </p>
         </div>
       </main>

@@ -1,8 +1,12 @@
 import { Home, Briefcase, BookOpen } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
 
 const Navigation = () => {
   const location = useLocation();
+  const { t } = useLanguage();
 
   const navItems = [
     { path: "/", icon: Home, label: "home" },
@@ -24,11 +28,16 @@ const Navigation = () => {
               >
                 <div className="flex items-center space-x-2">
                   <Icon size={16} />
-                  <span>{label}</span>
+                  <span>{t(label)}</span>
                 </div>
               </Link>
             );
           })}
+          
+          <div className="flex items-center space-x-1 ml-2 pl-2 border-l border-border">
+            <ThemeToggle />
+            <LanguageToggle />
+          </div>
         </div>
       </div>
     </nav>

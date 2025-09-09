@@ -1,6 +1,10 @@
 import Navigation from "@/components/Navigation";
+import VisitorStats from "@/components/VisitorStats";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Logs = () => {
+  const { t } = useLanguage();
+  
   const logEntries = [
     {
       date: "2024-01-15",
@@ -22,11 +26,12 @@ const Logs = () => {
   return (
     <div className="min-h-screen bg-gradient-soft">
       <Navigation />
+      <VisitorStats />
       
       <main className="pt-32 pb-16 px-8">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-4xl font-light text-foreground mb-12 text-center">
-            Logs
+            {t("Logs")}
           </h1>
           
           <div className="space-y-8">
@@ -42,11 +47,11 @@ const Logs = () => {
                 </div>
                 
                 <h2 className="text-xl font-medium mb-4 text-foreground">
-                  {entry.title}
+                  {t(entry.title)}
                 </h2>
                 
                 <p className="text-muted-foreground leading-relaxed">
-                  {entry.content}
+                  {t(entry.content)}
                 </p>
               </article>
             ))}

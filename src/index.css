@@ -191,4 +191,147 @@ All colors MUST be HSL.
   .shadow-nav {
     box-shadow: var(--shadow-nav);
   }
+
+  /* Custom animations inspired by sang.design */
+  @keyframes laptopOpen {
+    0% {
+      transform: perspective(1000px) rotateX(-90deg) scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      transform: perspective(1000px) rotateX(-45deg) scale(0.9);
+      opacity: 0.7;
+    }
+    100% {
+      transform: perspective(1000px) rotateX(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes characterBounce {
+    0% {
+      transform: translateY(30px) scale(0.8);
+      opacity: 0;
+    }
+    60% {
+      transform: translateY(-10px) scale(1.05);
+      opacity: 0.8;
+    }
+    80% {
+      transform: translateY(5px) scale(0.98);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+    }
+    25% {
+      transform: translateY(-10px) translateX(5px);
+    }
+    50% {
+      transform: translateY(-20px) translateX(-3px);
+    }
+    75% {
+      transform: translateY(-10px) translateX(7px);
+    }
+  }
+
+  @keyframes textGlow {
+    0%, 100% {
+      text-shadow: 0 0 5px rgba(251, 146, 60, 0.3);
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(251, 146, 60, 0.6), 0 0 30px rgba(251, 146, 60, 0.4);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 40px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translate3d(-40px, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translate3d(40px, 0, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Enhanced hover effects */
+  .laptop-container:hover .laptop-lid {
+    transform: perspective(1000px) rotateX(-5deg) scale(1.02);
+    transition: transform 0.3s ease-out;
+  }
+
+  .character-container:hover {
+    transform: translateY(-5px) scale(1.02);
+    transition: transform 0.3s ease-out;
+  }
+
+  /* Staggered animation utilities */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+
+  /* Performance optimizations */
+  .transform-gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Loading state animations */
+  .loading-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+  }
 }

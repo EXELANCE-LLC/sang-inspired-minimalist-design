@@ -1,28 +1,28 @@
 <!doctype html>
 <html lang="tr">
-  <script>
-    // Detect language from URL or saved preference
-    (function() {
-      const urlPath = window.location.pathname;
-      const urlLangMatch = urlPath.match(/^\/(en|tr|ar)(\/|$)/);
-      let lang = 'tr'; // default
-      
-      if (urlLangMatch) {
-        lang = urlLangMatch[1];
-      } else {
-        const savedLang = localStorage.getItem('preferredLanguage');
-        if (savedLang && ['tr', 'en', 'ar'].includes(savedLang)) {
-          lang = savedLang;
-        }
-      }
-      
-      document.documentElement.lang = lang;
-      if (lang === 'ar') {
-        document.documentElement.dir = 'rtl';
-      }
-    })();
-  </script>
   <head>
+    <script>
+      // Detect language from URL or saved preference
+      (function() {
+        const urlPath = window.location.pathname;
+        const urlLangMatch = urlPath.match(/^\/(en|tr|ar)(\/|$)/);
+        let lang = 'tr'; // default
+        
+        if (urlLangMatch) {
+          lang = urlLangMatch[1];
+        } else {
+          const savedLang = localStorage.getItem('preferredLanguage');
+          if (savedLang && ['tr', 'en', 'ar'].includes(savedLang)) {
+            lang = savedLang;
+          }
+        }
+        
+        document.documentElement.lang = lang;
+        if (lang === 'ar') {
+          document.documentElement.dir = 'rtl';
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Blog - Yazılım, AI ve Teknoloji</title>

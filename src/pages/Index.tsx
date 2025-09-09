@@ -1,12 +1,38 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navigation from "@/components/Navigation";
+import heroCharacter from "@/assets/hero-character.png";
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-gradient-soft">
+      <Navigation />
+      
+      <main className="flex flex-col items-center justify-center min-h-screen px-8 pt-16">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-extralight text-foreground mb-6 tracking-wide">
+            Hi there!
+          </h1>
+        </div>
+        
+        <div className="hover-float">
+          <img 
+            src={heroCharacter}
+            alt="Cute character with laptop"
+            className="w-80 h-auto max-w-full shadow-soft rounded-3xl"
+          />
+        </div>
+        
+        <div className="mt-16 text-center">
+          <p className="text-lg text-muted-foreground font-light">
+            Welcome to my little corner of the internet
+          </p>
+        </div>
+      </main>
+      
+      <footer className="text-center pb-8">
+        <p className="text-sm text-muted-foreground">
+          © 2024 — Made with love
+        </p>
+      </footer>
     </div>
   );
 };

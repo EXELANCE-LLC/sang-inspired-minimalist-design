@@ -25,33 +25,33 @@ const VisitorStats = () => {
     } ${isRTL ? 'right-6' : 'left-6'}`}>
       <div className="bg-card/95 backdrop-blur-sm border border-border rounded-2xl p-4 shadow-soft min-w-[200px]">
         <div className="space-y-3">
-          <div className="flex items-center space-x-3">
+          <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
             <div className="flex items-center justify-center w-8 h-8 bg-primary/10 rounded-full">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
             </div>
             <div className="flex-1">
-              <div className="flex items-center space-x-2">
+              <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                 <Users size={14} className="text-muted-foreground" />
                 <span className="text-sm font-medium text-foreground">
                   {activeVisitors}
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground">{t('active_visitors')}</p>
+              <p className={`text-xs text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>{t('active_visitors')}</p>
             </div>
           </div>
-          
+
           <div className="border-t border-border pt-3">
-            <div className="flex items-center space-x-3">
+            <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}>
               <div className="flex items-center justify-center w-8 h-8 bg-secondary/20 rounded-full">
                 <Eye size={14} className="text-muted-foreground" />
               </div>
               <div className="flex-1">
-                <div className="flex items-center space-x-2">
+                <div className={`flex items-center ${isRTL ? 'space-x-reverse space-x-2' : 'space-x-2'}`}>
                   <span className="text-sm font-medium text-foreground">
                     {todayVisitors}
                   </span>
                 </div>
-                <p className="text-xs text-muted-foreground">{t('today_visitors')}</p>
+                <p className={`text-xs text-muted-foreground ${isRTL ? 'text-right' : 'text-left'}`}>{t('today_visitors')}</p>
               </div>
             </div>
           </div>

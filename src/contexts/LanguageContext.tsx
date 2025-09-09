@@ -9,13 +9,13 @@ interface LanguageContextType {
 
 const translations = {
   tr: {
-    home: "ana sayfa",
-    work: "çalışmalar", 
-    logs: "günlükler",
+    home: "ev",
+    work: "iş", 
+    logs: "blog",
     "Hi there!": "Merhaba!",
     "I'm a designer and developer who loves creating beautiful, functional experiences.": "Güzel ve işlevsel deneyimler yaratmayı seven bir tasarımcı ve geliştiriciyim.",
-    "Work": "Çalışmalar",
-    "Logs": "Günlükler",
+    "Work": "İş",
+    "Logs": "Blog",
     "Starting a new journey": "Yeni bir yolculuğun başlangıcı",
     "Today marks the beginning of something beautiful. Excited to share my thoughts and experiences here.": "Bugün güzel bir şeyin başlangıcını işaret ediyor. Düşüncelerimi ve deneyimlerimi burada paylaşmak için heyecanlıyım.",
     "Design inspiration": "Tasarım ilhamı",
@@ -282,8 +282,23 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   useEffect(() => {
     const initializeLanguage = async () => {
       try {
-        const detectedLang = await detectLanguage();
-        setLanguage(detectedLang);
+        // Check URL for language preference
+        const urlPath = window.location.pathname;
+        const urlLangMatch = urlPath.match(/^\/(en|tr|ar)(\/|$)/);
+        
+        if (urlLangMatch) {
+          setLanguage(urlLangMatch[1]);
+        } else {
+          // Check localStorage for saved preference
+          const savedLang = localStorage.getItem('preferredLanguage');
+          if (savedLang && ['tr', 'en', 'ar'].includes(savedLang)) {
+            setLanguage(savedLang);
+          } else {
+            // Auto-detect language
+            const detectedLang = await detectLanguage();
+            setLanguage(detectedLang);
+          }
+        }
       } catch (error) {
         console.warn('Language detection failed, using default:', error);
         setLanguage('tr'); // Fallback to Turkish
@@ -302,6 +317,8 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   useEffect(() => {
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
+    // Save language preference
+    localStorage.setItem('preferredLanguage', language);
   }, [language, isRTL]);
 
   return (

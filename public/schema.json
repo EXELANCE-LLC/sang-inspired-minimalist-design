@@ -1,0 +1,43 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Tech Blog",
+  "alternateName": "Teknoloji Blog",
+  "url": "https://techblog.com",
+  "description": "Teknoloji, yapay zeka, blockchain, siber güvenlik ve yazılım geliştirme üzerine güncel içerikler ve derinlemesine analizler.",
+  "inLanguage": ["tr", "en", "ar"],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Tech Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://techblog.com/og-image.jpg"
+    }
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "Yapay Zeka ve Geleceğin Yazılım Geliştirme Pratikleri",
+      "alternativeHeadline": "AI and Future Software Development Practices",
+      "datePublished": "2024-01-15",
+      "dateModified": "2024-01-15",
+      "author": {
+        "@type": "Person",
+        "name": "Ahmet Yılmaz"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Tech Blog"
+      },
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&q=80",
+      "articleSection": "Yapay Zeka",
+      "keywords": ["AI", "Machine Learning", "Software Development", "GitHub Copilot"],
+      "url": "https://techblog.com/blog/ai-and-future-software-development"
+    }
+  ],
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://techblog.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}

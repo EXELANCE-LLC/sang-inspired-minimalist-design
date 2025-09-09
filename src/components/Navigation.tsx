@@ -11,7 +11,7 @@ const Navigation = () => {
   const navItems = [
     { path: "/", icon: Home, label: "home" },
     { path: "/work", icon: Briefcase, label: "work" },
-    { path: "/logs", icon: BookOpen, label: "logs" },
+    { path: "/blog", icon: BookOpen, label: "logs" },
   ];
 
   return (

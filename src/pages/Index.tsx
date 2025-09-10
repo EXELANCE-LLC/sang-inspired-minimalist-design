@@ -6,6 +6,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
   const { t } = useLanguage();
+  const [isLoaded, setIsLoaded] = useState(false);
   const [showElements, setShowElements] = useState({
     title: false,
     subtitle: false,
@@ -14,6 +15,9 @@ const Index = () => {
   });
 
   useEffect(() => {
+    // Trigger initial load
+    setTimeout(() => setIsLoaded(true), 100);
+
     // Staggered animation sequence for text elements
     const timeouts = [
       setTimeout(() => setShowElements(prev => ({ ...prev, title: true })), 200),

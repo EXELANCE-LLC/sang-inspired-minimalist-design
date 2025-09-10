@@ -1,33 +1,23 @@
 import { useEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import VisitorStats from "@/components/VisitorStats";
-import BubbleMessages from "@/components/BubbleMessages";
+import HomePageComponent from "@/components/HomePageComponent";
 import { useLanguage } from "@/contexts/LanguageContext";
-import heroCharacter from "@/assets/face-sprite-dark.png";
-import laptopLid from "@/assets/laptop-lid.png";
 
 const Index = () => {
   const { t } = useLanguage();
-  const [isLoaded, setIsLoaded] = useState(false);
   const [showElements, setShowElements] = useState({
     title: false,
     subtitle: false,
-    laptop: false,
-    character: false,
     description: false,
     footer: false
   });
 
   useEffect(() => {
-    // Trigger initial load
-    setTimeout(() => setIsLoaded(true), 100);
-
-    // Staggered animation sequence
+    // Staggered animation sequence for text elements
     const timeouts = [
       setTimeout(() => setShowElements(prev => ({ ...prev, title: true })), 200),
       setTimeout(() => setShowElements(prev => ({ ...prev, subtitle: true })), 500),
-      setTimeout(() => setShowElements(prev => ({ ...prev, laptop: true })), 800),
-      setTimeout(() => setShowElements(prev => ({ ...prev, character: true })), 1100),
       setTimeout(() => setShowElements(prev => ({ ...prev, description: true })), 1400),
       setTimeout(() => setShowElements(prev => ({ ...prev, footer: true })), 1700),
     ];
@@ -76,91 +66,8 @@ const Index = () => {
           </p>
         </div>
         
-        {/* Advanced Sang.design inspired graphics container */}
-        <div className="relative flex flex-col items-center justify-center mb-16 sang-home-graphic-wrapper">
-          
-          {/* Bubble Messages */}
-          <div className="relative w-full max-w-4xl">
-            <BubbleMessages />
-          </div>
-
-          {/* Main Graphics Container */}
-          <div className={`relative transition-all duration-1200 ease-out ${
-            showElements.laptop 
-              ? 'opacity-100 transform translate-y-0 scale-100' 
-              : 'opacity-0 transform translate-y-8 scale-95'
-          }`}>
-            
-            {/* Sprite Character with advanced animations */}
-            <div className={`sang-sprite-container relative transition-all duration-1200 ease-out ${
-              showElements.character 
-                ? 'opacity-100 transform translate-x-0 scale-100' 
-                : 'opacity-0 transform translate-x-8 scale-95'
-            }`}>
-              <div className="sang-sprite-wrapper relative overflow-hidden rounded-full w-80 h-80 md:w-96 md:h-96">
-                <img 
-                  src={heroCharacter}
-                  alt="Character"
-                  className="w-full h-full object-cover"
-                  style={{
-                    animation: showElements.character ? 'characterBounce 2s ease-out 0.3s both' : 'none'
-                  }}
-                />
-                {/* Character Floating Effect */}
-                <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full blur-xl opacity-50 animate-pulse" />
-              </div>
-            </div>
-
-            {/* Advanced Laptop Container with Sang.design styling */}
-            <div className={`sang-laptop-wrapper ${showElements.laptop ? 'sang-laptop-active' : ''}`}>
-              <div className="sang-laptop-lid">
-                {/* Screen Glow Effect */}
-                <div className="sang-screen-glow" />
-                
-                {/* Fidget Hand Animation */}
-                <div 
-                  className="sang-fidget-hand absolute"
-                  style={{
-                    left: '70px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 2
-                  }}
-                />
-                
-                {/* Laptop Lid Image */}
-                <img 
-                  src={laptopLid}
-                  alt="Laptop"
-                  className="sang-laptop-lid-image w-64 md:w-80 h-auto"
-                  style={{
-                    transformOrigin: 'center bottom',
-                    scale: 0.9
-                  }}
-                  onLoad={() => {
-                    setShowElements(prev => ({ ...prev, laptop: true }));
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Interactive Elements */}
-          <div className={`mt-8 transition-all duration-1000 ease-out ${
-            showElements.description 
-              ? 'opacity-100 transform translate-y-0' 
-              : 'opacity-0 transform translate-y-8'
-          }`}>
-            <div className="flex justify-center space-x-2 mb-4">
-              <span className="inline-block w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
-              <span className="inline-block w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-              <span className="inline-block w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-            </div>
-            <p className="text-center text-sm text-muted-foreground">
-              {t("Crafting digital experiences with passion and precision")}
-            </p>
-          </div>
-        </div>
+        {/* Sang.design Exact Implementation */}
+        <HomePageComponent />
 
         {/* Animated Description */}
         <div className={`text-center transition-all duration-1000 ease-out ${

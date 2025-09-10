@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Slussen Font Family Setup */
+@font-face {
+  font-family: 'Slussen Variable';
+  src: local('Slussen Variable'),
+       url('/Slussen-Variable[wdth,wght,slnt].ttf') format('truetype');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Slussen Mono Variable';
+  src: local('Slussen Mono Variable'),
+       url('/Slussen-Mono-Variable[wght,slnt].ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
@@ -131,7 +151,7 @@ All colors MUST be HSL.
   }
 
   .dark body {
-    background-color: rgb(24 24 27); /* zinc-900 for sang.design dark mode */
+    background-color: rgb(24 24 27 / var(--tw-bg-opacity));
   }
 
   /* RTL Support for Arabic */
@@ -159,26 +179,6 @@ All colors MUST be HSL.
 }
 
 @layer components {
-  /* Slussen Font Family Setup */
-  @font-face {
-    font-family: 'Slussen Variable';
-    src: local('Slussen Variable'),
-         url('/Slussen-Variable[wdth,wght,slnt].ttf') format('truetype');
-    font-weight: 100 900;
-    font-stretch: 75% 125%;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Slussen Mono Variable';
-    src: local('Slussen Mono Variable'),
-         url('/Slussen-Mono-Variable[wght,slnt].ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-  }
-
   /* Navigation styles */
   .nav-link {
     @apply relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300;

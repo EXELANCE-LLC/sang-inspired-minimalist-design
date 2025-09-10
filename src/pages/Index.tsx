@@ -18,7 +18,7 @@ const Index = () => {
     // Trigger initial load
     setTimeout(() => setIsLoaded(true), 100);
 
-    // Staggered animation sequence for text elements
+    // Staggered animation sequence
     const timeouts = [
       setTimeout(() => setShowElements(prev => ({ ...prev, title: true })), 200),
       setTimeout(() => setShowElements(prev => ({ ...prev, subtitle: true })), 500),

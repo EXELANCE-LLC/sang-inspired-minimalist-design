@@ -25,52 +25,83 @@
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tech Blog - Yazılım, AI ve Teknoloji</title>
+    <title>/~</title>
     
     <!-- Primary Meta Tags -->
-    <meta name="title" content="Tech Blog - Yazılım, AI ve Teknoloji">
-    <meta name="description" content="Teknoloji, yapay zeka, blockchain, siber güvenlik ve yazılım geliştirme üzerine güncel içerikler ve derinlemesine analizler.">
-    <meta name="keywords" content="teknoloji, yazılım, AI, yapay zeka, blockchain, web3, siber güvenlik, bug bounty, react, devops, microservices, programming">
-    <meta name="author" content="Tech Blog">
+    <meta name="title" content="Bigo - Designer & Developer">
+    <meta name="description" content="I'm a designer and developer who loves creating beautiful, functional experiences.">
+    <meta name="keywords" content="design, development, web design, ui/ux, frontend, backend, mobile apps, portfolio">
+    <meta name="author" content="Bigo">
     <meta name="robots" content="index, follow">
     <meta name="language" content="Turkish">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="/">
-    <meta property="og:title" content="Tech Blog - Yazılım, AI ve Teknoloji">
-    <meta property="og:description" content="Teknoloji, yapay zeka, blockchain, siber güvenlik ve yazılım geliştirme üzerine güncel içerikler ve derinlemesine analizler.">
-    <meta property="og:image" content="/og-image.jpg">
+    <meta property="og:title" content="Bigo - Designer & Developer">
+    <meta property="og:description" content="I'm a designer and developer who loves creating beautiful, functional experiences.">
+    <meta property="og:image" content="/og-image.png">
     <meta property="og:locale" content="tr_TR">
     <meta property="og:locale:alternate" content="en_US">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="/">
-    <meta property="twitter:title" content="Tech Blog - Yazılım, AI ve Teknoloji">
-    <meta property="twitter:description" content="Teknoloji, yapay zeka, blockchain, siber güvenlik ve yazılım geliştirme üzerine güncel içerikler ve derinlemesine analizler.">
-    <meta property="twitter:image" content="/og-image.jpg">
+    <meta property="twitter:title" content="Bigo - Designer & Developer">
+    <meta property="twitter:description" content="I'm a designer and developer who loves creating beautiful, functional experiences.">
+    <meta property="twitter:image" content="/og-image.png">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <!-- Favicons - Complete Set -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicons/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/favicons/favicon-128x128.png">
+    <link rel="icon" type="image/png" sizes="196x196" href="/favicons/favicon-196x196.png">
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-TileColor" content="#F83644">
+    <meta name="msapplication-TileImage" content="/favicons/mstile-144x144.png">
+    <meta name="msapplication-square70x70logo" content="/favicons/mstile-70x70.png">
+    <meta name="msapplication-square150x150logo" content="/favicons/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/favicons/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/favicons/mstile-310x310.png">
+    <meta name="theme-color" content="#F83644">
     
-    <!-- Performance Optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://images.unsplash.com">
-    <link rel="preconnect" href="https://i.pravatar.cc">
+    <!-- Preload Critical Fonts -->
+    <link rel="preload" href="/Slussen-Variable[wdth,wght,slnt].ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/Slussen-Mono-Variable[wght,slnt].ttf" as="font" type="font/ttf" crossorigin>
     
-    <!-- DNS Prefetch -->
-    <link rel="dns-prefetch" href="https://images.unsplash.com">
-    <link rel="dns-prefetch" href="https://i.pravatar.cc">
-    
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="/src/assets/Slussen-Variable[wdth,wght,slnt].ttf" as="font" type="font/ttf" crossorigin>
+    <!-- Theme Script -->
+    <script>
+      const darkThemeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      
+      const adjustTheme = () => {
+        const theme = (() => {
+          if (darkThemeMediaQuery.matches) {
+            return "dark";
+          }
+          return "light";
+        })();
+        
+        if (theme === "light") {
+          document.documentElement.classList.remove("dark");
+        } else {
+          document.documentElement.classList.add("dark");
+        }
+      };
+      
+      adjustTheme();
+      darkThemeMediaQuery.addEventListener("change", (e) => {
+        adjustTheme();
+      });
+    </script>
     
     <!-- Structured Data -->
     <script type="application/ld+json">

@@ -1,32 +1,47 @@
 {
-  "name": "Tech Blog - Yazılım, AI ve Teknoloji",
-  "short_name": "Tech Blog",
-  "description": "Teknoloji, yapay zeka, blockchain ve yazılım geliştirme üzerine güncel içerikler",
+  "name": "Bigo - Designer & Developer",
+  "short_name": "Bigo",
+  "description": "I'm a designer and developer who loves creating beautiful, functional experiences.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "theme_color": "#F83644",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/favicons/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
     },
     {
-      "src": "/icon-192.png",
+      "src": "/favicons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/favicon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/favicon-196x196.png",
+      "sizes": "196x196",
       "type": "image/png",
-      "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/favicons/apple-touch-icon-152x152.png",
+      "sizes": "152x152",
       "type": "image/png",
-      "sizes": "512x512",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["technology", "education", "news"],
+  "categories": ["design", "development", "portfolio"],
   "lang": "tr",
   "dir": "ltr"
 }

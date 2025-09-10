@@ -8,26 +8,26 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Clean minimalist color palette inspired by sang.design */
-    --background: 0 0% 99%;
-    --foreground: 0 0% 15%;
+    /* Sang.design inspired color palette */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 4%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 15%;
+    --card-foreground: 0 0% 4%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 15%;
+    --popover-foreground: 0 0% 4%;
 
-    /* Warm orange primary from the design */
-    --primary: 25 95% 65%;
+    /* Primary red accent from sang.design */
+    --primary: 355 85% 62%;
     --primary-foreground: 0 0% 100%;
 
-    /* Soft pink secondary */
-    --secondary: 330 50% 88%;
+    /* Subtle secondary */
+    --secondary: 210 13% 93%;
     --secondary-foreground: 0 0% 15%;
 
-    /* Very light gray muted */
-    --muted: 0 0% 97%;
+    /* Light zinc muted */
+    --muted: 210 13% 97%;
     --muted-foreground: 0 0% 45%;
 
     /* Warm accent */
@@ -77,24 +77,24 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Dark mode with warm undertones */
-    --background: 0 0% 8%;
-    --foreground: 0 0% 95%;
+    /* Sang.design dark mode */
+    --background: 0 0% 6%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 25 95% 70%;
-    --primary-foreground: 0 0% 10%;
+    --primary: 355 85% 62%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 217 10% 15%;
+    --secondary-foreground: 0 0% 85%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 217 10% 12%;
+    --muted-foreground: 0 0% 65%;
 
     --accent: 45 100% 75%;
     --accent-foreground: 0 0% 10%;
@@ -125,7 +125,13 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans Arabic", sans-serif;
+    font-family: 'Slussen Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans Arabic', sans-serif;
+    font-weight: 400;
+    font-variation-settings: "wght" 400;
+  }
+
+  .dark body {
+    background-color: rgb(24 24 27); /* zinc-900 for sang.design dark mode */
   }
 
   /* RTL Support for Arabic */
@@ -153,6 +159,26 @@ All colors MUST be HSL.
 }
 
 @layer components {
+  /* Slussen Font Family Setup */
+  @font-face {
+    font-family: 'Slussen Variable';
+    src: local('Slussen Variable'),
+         url('/Slussen-Variable[wdth,wght,slnt].ttf') format('truetype');
+    font-weight: 100 900;
+    font-stretch: 75% 125%;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Slussen Mono Variable';
+    src: local('Slussen Mono Variable'),
+         url('/Slussen-Mono-Variable[wght,slnt].ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
   /* Navigation styles */
   .nav-link {
     @apply relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300;

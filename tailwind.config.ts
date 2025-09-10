@@ -7,7 +7,9 @@ export default {
   theme: {
     fontFamily: {
       sans: [
-        "system-ui",
+        "Slussen Variable",
+        "ui-sans-serif",
+        "system-ui", 
         "-apple-system",
         "BlinkMacSystemFont",
         "Segoe UI",
@@ -16,6 +18,17 @@ export default {
         "Arial",
         "Noto Sans Arabic",
         "sans-serif",
+      ],
+      mono: [
+        "Slussen Mono Variable",
+        "ui-monospace",
+        "SFMono-Regular",
+        "Menlo",
+        "Monaco",
+        "Consolas",
+        "Liberation Mono",
+        "Courier New",
+        "monospace",
       ],
     },
     container: {

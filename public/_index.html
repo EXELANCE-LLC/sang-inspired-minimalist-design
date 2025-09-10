@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="favicons/apple-touch-icon-152x152.png">
+    <link rel="icon" type="image/png" href="favicons/favicon-196x196.png" sizes="196x196">
+    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="favicons/favicon-128.png" sizes="128x128">
+    <meta name="application-name" content=" ">
+    <meta name="msapplication-TileColor" content="#F83644">
+    <meta name="msapplication-TileImage" content="favicons/mstile-144x144.png">
+    <meta name="msapplication-square70x70logo" content="favicons/mstile-70x70.png">
+    <meta name="msapplication-square150x150logo" content="favicons/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="favicons/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="favicons/mstile-310x310.png">
+    <meta name="generator" content="Astro v3.0.13">
+    <title>/~</title>
+    <meta name="astro-view-transitions-enabled" content="true">
+    <meta name="astro-view-transitions-fallback" content="animate">
+    <script>
+    const darkThemeMediaQuery = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+    );
+
+    const adjustTheme = () => {
+        const theme = (() => {
+            if (darkThemeMediaQuery.matches) {
+                return "dark";
+            }
+            return "light";
+        })();
+
+        if (theme === "light") {
+            document.documentElement.classList.remove("dark");
+        } else {
+            document.documentElement.classList.add("dark");
+        }
+    };
+
+    const setSavedTheme = (theme) => {
+        window.localStorage.setItem("theme", theme);
+    };
+
+    const getSavedTheme = () => {
+        if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+        ) {
+            return localStorage.getItem("theme");
+        }
+    };
+
+    adjustTheme();
+    darkThemeMediaQuery.addEventListener("change", (e) => {
+        adjustTheme();
+    });
+    </script>
+    <link rel="stylesheet" href="/_astro/index.1086a702.css"/>
+    <style>
+    ._container_7hw26_1 {
+        min-height:30rem
+    }
+
+    ._bubbleContainer_1xro2_5 {
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        display: flex;
+        width: 100%;
+        max-width: 20rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content:center
+    }
+
+    @media (min-width: 640px) {
+        ._bubbleContainer_1xro2_5 {
+            bottom: 7rem;
+            left: 13rem;
+            align-items: flex-start;
+            justify-content:flex-end
+        }
+    }
+
+    ._bubbleContainer_1xro2_5 {
+        perspective:50rem
+    }
+
+    ._bubbleTransformWrapper_1xro2_22 {
+        display: flex;
+        width: 100%;
+        transform-origin: bottom left;
+        list-style-type: none;
+        align-items: center;
+        justify-content:center
+    }
+
+    @media (min-width: 640px) {
+        ._bubbleTransformWrapper_1xro2_22 {
+            align-items: flex-start;
+            justify-content:flex-start
+        }
+    }
+
+    ._bubbleScaleWrapper_1xro2_29 {
+        transform-origin:bottom left
+    }
+
+    ._bubble_1xro2_5 {
+        border-radius: 1rem;
+        padding: .5rem .75rem .25rem;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+        transition-duration:.15s
+    }
+
+    @media (prefers-color-scheme: dark) {
+        ._bubble_1xro2_5 {
+            --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1);
+            --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+            box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+    }
+
+    ._bubbleTail_1xro2_37 {
+        visibility: hidden;
+        position: absolute;
+        bottom: -.125rem;
+        left: -.25rem;
+        z-index: -10;
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+        transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+        transition-duration:.15s
+    }
+
+    @media (min-width: 640px) {
+        ._bubbleTail_1xro2_37 {
+            visibility:visible
+        }
+    }
+
+    ._bubbleTail_1xro2_37 {
+        width: 25px;
+        height:24px
+    }
+
+    ._bubbleText_1xro2_43 {
+        position: relative;
+        z-index: 10;
+        display: inline-block;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        line-height: 1.25;
+        font-weight: 500;
+        font-variation-settings: "wght" 500
+    }
+
+    ._bubbleText_1xro2_43._italic_1xro2_1 {
+        font-variation-settings: "slnt" 1, "wght" 500
+    }
+
+    ._bubbleMessageAnimWrapper_1xro2_47 {
+        position: relative;
+        margin-bottom: -1.25rem;
+        width: 100%;
+        perspective:9cm
+    }
+
+    ._homeGraphicWrapper_j0tyu_4 {
+        pointer-events: none;
+        position: relative;
+        display: grid;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        place-items:center
+    }
+
+    ._laptopLid_j0tyu_8 {
+        position: relative;
+        display: grid;
+        width: 100%;
+        place-items: center;
+        overflow:visible
+    }
+
+    ._laptopLid_j0tyu_8:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        display:block
+    }
+
+    ._laptopLidImage_j0tyu_17 {
+        z-index: 1;
+        position:relative
+    }
+
+    ._laptopWrapper_j0tyu_22 {
+        position: absolute;
+        inset: 0;
+        transform: translate3d(0, 56%, 0);
+        perspective-origin:center bottom
+    }
+
+    ._fidgetHand_j0tyu_28 {
+        width: 25px;
+        height: 25px;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color:#f0d1ac
+    }
+
+    ._spriteWrapper_j0tyu_36 {
+        opacity:1
+    }
+
+    ._screenGlow_j0tyu_40 {
+        position: absolute;
+        inset: .5rem;
+        bottom: 50%;
+        overflow: visible;
+        --lightBloom: 24px;
+        background-color: #5cceff99;
+        animation:_filter-animation_j0tyu_1 8s infinite
+    }
+
+    @media (prefers-color-scheme: dark) {
+        ._screenGlow_j0tyu_40 {
+            --lightBloom: 24px;
+            background-color: #5cceff80;
+            animation:_filter-animation_j0tyu_1 8s infinite
+        }
+    }
+
+    @keyframes _filter-animation_j0tyu_1 {
+        0% {
+            filter:blur(var(--lightBloom, 18px)) hue-rotate(0deg)
+        }
+
+        5% {
+            filter:blur(var(--lightBloom, 18px)) hue-rotate(100deg)
+        }
+
+        10% {
+            filter:blur(var(--lightBloom, 18px)) hue-rotate(10deg)
+        }
+
+        15% {
+            filter:blur(var(--lightBloom, 18px)) hue-rotate(24deg)
+        }
+
+        50% {
+            filter:blur(var(--lightBloom, 18px)) hue-rotate(100deg)
+        }
+
+        to {
+            filter: blur(var(--lightBloom, 18px)) hue-rotate(0deg)
+        }
+    }
+    </style>
+    <script type="module" src="/_astro/hoisted.bec1c87a.js"></script>
+</head>
+<body class="bg-white dark:bg-zinc-900 h-[100dvh]">
+    <div class="h-full flex flex-col">
+        <nav class="py-1 pt-8 flex items-center justify-center gap-x-2 lg:px-48 md:px-8 px-4 astro-nav">
+            <div class="group">
+                <a href="/" class="transition group inline-flex relative justify-center items-center rounded-lg py-2 pl-2 pr-3 gap-2 text-md font-medium text-zinc-500 overflow-hidden dark:text-zinc-400 group-hover:text-zinc-900 group-hover:dark:text-zinc-100 ring-2 group-hover:ring-zinc-400 group-hover:dark:ring-zinc-600 before:content-[&#x27;&#x27;] before:absolute before:w-full before:aspect-square before:rounded-full before:transition-transform before:duration-200 before:transform before:scale-50 before:translate-y-full before:opacity-0 before:group-hover:opacity-100 before:group-hover:scale-110 before:group-hover:translate-y-0 before:group-hover:bg-black/10 before:group-hover:dark:bg-white/10 isActive ring-zinc-200 dark:ring-zinc-800 bg-zinc-500/5 dark:bg-zinc-500/5">
+                    <span>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 rotate-6 transition -translate-y-px group-hover:rotate-0 group-hover:translate-y-0 group-hover:text-red-500 group-[.isActive]:rotate-0 group-[.isActive]:translate-y-0 group-[.isActive]:text-red-500" slot="icon">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5 7C5 6.44771 5.44772 6 6 6H18C18.5523 6 19 6.44771 19 7C19 7.55228 18.5523 7.99999 18 7.99999H13C13 8.00022 13 8.00045 13 8.00069C13 8.00248 13 8.00438 13 8.00641C13.0001 8.05204 13.0028 8.15622 13.0102 8.29708C13.0236 8.5484 13.0478 8.82995 13.0855 9.13367C13.1929 9.9968 13.386 10.8575 13.6822 11.6497C14.4843 13.7944 15.8398 15 17.9931 15C18.5454 15 18.9931 15.4477 18.9931 16C18.9931 16.5523 18.5454 17 17.9931 17C15.0674 17 13.1058 15.4007 11.997 12.8192C10.8855 15.4007 8.9235 17 6 17C5.44772 17 5 16.5522 5 16C5 15.4477 5.44772 15 6 15C8.15117 15 9.50781 13.7939 10.3126 11.6487C10.6107 10.8542 10.8052 9.99092 10.9136 9.12566C10.9785 8.6078 10.9999 8.21106 11 7.99999H6C5.44772 7.99999 5 7.55228 5 7Z" fill="currentColor"></path>
+                        </svg>
+                    </span>
+                    <span>home</span>
+                </a>
+            </div>
+            <div class="group">
+                <a href="/work" class="transition group inline-flex relative justify-center items-center rounded-lg py-2 pl-2 pr-3 gap-2 text-md font-medium text-zinc-500 overflow-hidden dark:text-zinc-400 group-hover:text-zinc-900 group-hover:dark:text-zinc-100 ring-2 group-hover:ring-zinc-400 group-hover:dark:ring-zinc-600 before:content-[&#x27;&#x27;] before:absolute before:w-full before:aspect-square before:rounded-full before:transition-transform before:duration-200 before:transform before:scale-50 before:translate-y-full before:opacity-0 before:group-hover:opacity-100 before:group-hover:scale-110 before:group-hover:translate-y-0 before:group-hover:bg-black/10 before:group-hover:dark:bg-white/10 ring-transparent">
+                    <span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" class="-rotate-6 transition group-hover:rotate-0 group-hover:text-[#DCAC00] group-hover:dark:text-[#FFE657] group-[.isActive]:rotate-0 group-[.isActive]:text-[#DCAC00] group-[.isActive]:dark:text-[#FFE657]">
+                                <rect width="256" height="256" fill="none"></rect>
+                                <path d="M179.8,115.8l4.9,4.9a16.1,16.1,0,0,1,0,22.6l-7,7a8,8,0,0,1-11.4,0L105.7,89.7a8,8,0,0,1,0-11.4l7-7a16.1,16.1,0,0,1,22.6,0l4.9,4.9,27.6-27.6c10.8-10.8,28.4-11.4,39.4-.9a28,28,0,0,1,.6,40.1Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></path>
+                                <path d="M158.6,142.6l-56,56a31.7,31.7,0,0,1-30.9,8.3L48.3,217.1a8,8,0,0,1-8.8-1.6h0a5.7,5.7,0,0,1-1.2-6.4l10.8-24.8a31.7,31.7,0,0,1,8.3-30.9l56-56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></path>
+                                <line x1="52.3" y1="160" x2="141.3" y2="160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></line>
+                            </svg>
+                        </span>
+                    </span>
+                    <span>work</span>
+                </a>
+            </div>
+            <!-- <NavbarButton
+                isActive={currentPath === "logs"}
+                hasNotice={false}
+                external={false}
+                link="/logs"
+              >
+                <span slot="icon">
+                  <Command size={24} weight="bold" />
+                </span>
+                <span slot="text">keyboards</span>
+              </NavbarButton> -->
+            <div class="group">
+                <a href="/logs" class="transition group inline-flex relative justify-center items-center rounded-lg py-2 pl-2 pr-3 gap-2 text-md font-medium text-zinc-500 overflow-hidden dark:text-zinc-400 group-hover:text-zinc-900 group-hover:dark:text-zinc-100 ring-2 group-hover:ring-zinc-400 group-hover:dark:ring-zinc-600 before:content-[&#x27;&#x27;] before:absolute before:w-full before:aspect-square before:rounded-full before:transition-transform before:duration-200 before:transform before:scale-50 before:translate-y-full before:opacity-0 before:group-hover:opacity-100 before:group-hover:scale-110 before:group-hover:translate-y-0 before:group-hover:bg-black/10 before:group-hover:dark:bg-white/10 ring-transparent">
+                    <span>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" class="-rotate-6 transition group-hover:rotate-0 group-hover:text-blue-500 group-[.isActive]:rotate-0 group-[.isActive]:text-blue-500">
+                                <rect width="256" height="256" fill="none"></rect>
+                                <path d="M156.7,216H48a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H208a8,8,0,0,1,8,8V156.7a7.9,7.9,0,0,1-2.3,5.6l-51.4,51.4A7.9,7.9,0,0,1,156.7,216Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></path>
+                                <polyline points="215.3 156 156 156 156 215.3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"></polyline>
+                            </svg>
+                        </span>
+                    </span>
+                    <span>logs</span>
+                </a>
+            </div>
+            <!-- <NavbarButton isActive={false} hasNotice={false} external={true} link="/logs">
+                <span slot="icon">
+                  <ReadCvLogo
+                    size={24}
+                    weight="bold"
+                    className="-rotate-6 transition group-hover:rotate-0 group-hover:text-zinc-900 group-hover:dark:text-white group-[.isActive]:rotate-0  group-[.isActive]:text-zinc-900 group-[.isActive]:dark:text-white"
+                  />
+                </span>
+                <span slot="text">read.cv</span>
+              </NavbarButton> -->
+        </nav>
+        <div class="w-full flex-shrink-0 flex-grow flex justify-center">
+            <style>
+            astro-island, astro-slot, astro-static-slot {
+                display: contents
+            }
+            </style>
+            <script>
+            (() => {
+                var e = async t => {
+                    await (await t())()
+                };
+                (self.Astro || (self.Astro = {})).only = e;
+                window.dispatchEvent(new Event("astro:only"));
+            })();
+            ;
+            (() => {
+                var b = Object.defineProperty;
+                var f = (a, s, i) => s in a ? b(a, s, {
+                    enumerable: !0,
+                    configurable: !0,
+                    writable: !0,
+                    value: i
+                }) : a[s] = i;
+                var d = (a, s, i) => (f(a, typeof s != "symbol" ? s + "" : s, i), i);
+                var u;
+                {
+                    let a = {
+                            0: t => m(t),
+                            1: t => i(t),
+                            2: t => new RegExp(t),
+                            3: t => new Date(t),
+                            4: t => new Map(i(t)),
+                            5: t => new Set(i(t)),
+                            6: t => BigInt(t),
+                            7: t => new URL(t),
+                            8: t => new Uint8Array(t),
+                            9: t => new Uint16Array(t),
+                            10: t => new Uint32Array(t)
+                        },
+                        s = t => {
+                            let [e, r] = t;
+                            return e in a ? a[e](r) : void 0
+                        },
+                        i = t => t.map(s),
+                        m = t => typeof t != "object" || t === null ? t : Object.fromEntries(Object.entries(t).map(([e, r]) => [e, s(r)]));
+                    customElements.get("astro-island") || customElements.define("astro-island", (u = class  extends HTMLElement{
+                        constructor()
+                        {
+                            super(...arguments);
+                            d(this, "Component");
+                            d(this, "hydrator");
+                            d(this, "hydrate", async () => {
+                                var l;
+                                if (!this.hydrator || !this.isConnected)
+                                    return;
+                                let e = (l = this.parentElement) == null ? void 0 : l.closest("astro-island[ssr]");
+                                if (e) {
+                                    e.addEventListener("astro:hydrate", this.hydrate, {
+                                        once: !0
+                                    });
+                                    return
+                                }
+                                let r = this.querySelectorAll("astro-slot"),
+                                    c = {},
+                                    h = this.querySelectorAll("template[data-astro-template]");
+                                for (let n of h) {
+                                    let o = n.closest(this.tagName);
+                                    o != null && o.isSameNode(this) && (c[n.getAttribute("data-astro-template") || "default"] = n.innerHTML, n.remove())
+                                }
+                                for (let n of r) {
+                                    let o = n.closest(this.tagName);
+                                    o != null && o.isSameNode(this) && (c[n.getAttribute("name") || "default"] = n.innerHTML)
+                                }
+                                let p;
+                                try {
+                                    p = this.hasAttribute("props") ? m(JSON.parse(this.getAttribute("props"))) : {}
+                                } catch (n) {
+                                    let o = this.getAttribute("component-url") || "<unknown>",
+                                        y = this.getAttribute("component-export");
+                                    throw y && (o += ` (export ${y})`), console.error(`[hydrate] Error parsing props for component ${o}`, this.getAttribute("props"), n), n
+                                }
+                                await this.hydrator(this)(this.Component, p, c, {
+                                    client: this.getAttribute("client")
+                                }),
+                                this.removeAttribute("ssr"),
+                                this.dispatchEvent(new CustomEvent("astro:hydrate"))
+                            });
+                            d(this, "unmount", () => {
+                                this.isConnected || this.dispatchEvent(new CustomEvent("astro:unmount"))
+                            })
+                        }
+                        disconnectedCallback()
+                        {
+                            document.removeEventListener("astro:after-swap", this.unmount),
+                            document.addEventListener("astro:after-swap", this.unmount, {
+                                once: !0
+                            })
+                        }
+                        connectedCallback()
+                        {
+                            !this.hasAttribute("await-children") || this.firstChild ? this.childrenConnectedCallback() : new MutationObserver((e, r) => {
+                                r.disconnect(),
+                                setTimeout(() => this.childrenConnectedCallback(), 0)
+                            }).observe(this, {
+                                childList: !0
+                            })
+                        }
+                        async childrenConnectedCallback()
+                        {
+                            let e = this.getAttribute("before-hydration-url");
+                            e && await import(e),
+                            this.start()
+                        }
+                        start()
+                        {
+                            let e = JSON.parse(this.getAttribute("opts")),
+                                r = this.getAttribute("client");
+                            if (Astro[r] === void 0) {
+                                window.addEventListener(`astro:${r}`, () => this.start(), {
+                                    once: !0
+                                });
+                                return
+                            }
+                            Astro[r](async () => {
+                                let c = this.getAttribute("renderer-url"),
+                                    [h, {default: p}] = await Promise.all([import(this.getAttribute("component-url")), c ? import(c) : () => () => {}]),
+                                    l = this.getAttribute("component-export") || "default";
+                                if (!l.includes("."))
+                                    this.Component = h[l];
+                                else {
+                                    this.Component = h;
+                                    for (let n of l.split("."))
+                                        this.Component = this.Component[n]
+                                }
+                                return this.hydrator = p, this.hydrate
+                            }, e, this)
+                        }
+                        attributeChangedCallback()
+                        {
+                            this.hydrate()
+                        }
+                    }
+                    , d(u, "observedAttributes", ["props"]), u))
+                }
+            })();
+            </script>
+            <astro-island uid="Z2fI2fU" component-url="/_astro/HomePageComponent.5865c6ee.js" component-export="default" renderer-url="/_astro/client.fcb0e03a.js" props="{}" ssr="" client="only" opts="{&quot;name&quot;:&quot;Home&quot;,&quot;value&quot;:&quot;react&quot;}"></astro-island>
+        </div>
+        <footer class="lg:px-48 md:px-8 px-4 pt-24">
+            <div class="w-full flex-shrink-0 flex-grow flex flex-col justify-center items-center py-10">
+                <!-- <p class="clear-both">
+                            <img
+                              src="/images/turkey.png"
+                              alt="Animated turkey"
+                              width="25"
+                              height="25"
+                            />
+                          </p> -->
+                <p class="text-zinc-400 dark:text-zinc-700 text-xs clear-both font-mono">
+                &copy;2023 Sang Jin Lee
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

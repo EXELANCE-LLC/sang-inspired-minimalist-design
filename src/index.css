@@ -334,4 +334,286 @@ All colors MUST be HSL.
       opacity: .5;
     }
   }
+
+  /* Astro-inspired advanced animations */
+  .sang-bubble-container {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    display: flex;
+    width: 100%;
+    max-width: 20rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    perspective: 50rem;
+  }
+
+  @media (min-width: 640px) {
+    .sang-bubble-container {
+      bottom: 7rem;
+      left: 13rem;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+  }
+
+  .sang-bubble-transform-wrapper {
+    display: flex;
+    width: 100%;
+    transform-origin: bottom left;
+    list-style-type: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 640px) {
+    .sang-bubble-transform-wrapper {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  }
+
+  .sang-bubble-scale-wrapper {
+    transform-origin: bottom left;
+  }
+
+  .sang-bubble {
+    border-radius: 1rem;
+    padding: 0.5rem 0.75rem 0.25rem;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+    background-color: rgb(163 230 53); /* lime-400 */
+    color: black;
+    position: relative;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .sang-bubble {
+      --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+      background-color: rgb(101 163 13); /* lime-600 */
+    }
+  }
+
+  .sang-bubble-tail {
+    visibility: hidden;
+    position: absolute;
+    bottom: -0.125rem;
+    left: -0.25rem;
+    z-index: -10;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 0.15s;
+    width: 25px;
+    height: 24px;
+    color: rgb(163 230 53); /* lime-400 */
+  }
+
+  @media (min-width: 640px) {
+    .sang-bubble-tail {
+      visibility: visible;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .sang-bubble-tail {
+      color: rgb(101 163 13); /* lime-600 */
+    }
+  }
+
+  .sang-bubble-text {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    line-height: 1.25;
+    font-weight: 500;
+  }
+
+  .sang-bubble-message-anim-wrapper {
+    position: relative;
+    margin-bottom: -1.25rem;
+    width: 100%;
+    perspective: 9cm;
+  }
+
+  .sang-home-graphic-wrapper {
+    pointer-events: none;
+    position: relative;
+    display: grid;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    place-items: center;
+  }
+
+  .sang-laptop-lid {
+    position: relative;
+    display: grid;
+    width: 100%;
+    place-items: center;
+    overflow: visible;
+  }
+
+  .sang-laptop-lid:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  .sang-laptop-lid-image {
+    z-index: 1;
+    position: relative;
+  }
+
+  .sang-laptop-wrapper {
+    position: absolute;
+    inset: 0;
+    transform: translate3d(0, 56%, 0);
+    perspective-origin: center bottom;
+  }
+
+  .sang-fidget-hand {
+    width: 25px;
+    height: 25px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f0d1ac;
+  }
+
+  .sang-sprite-wrapper {
+    opacity: 1;
+  }
+
+  .sang-screen-glow {
+    position: absolute;
+    inset: 0.5rem;
+    bottom: 50%;
+    overflow: visible;
+    --lightBloom: 24px;
+    background-color: #5cceff99;
+    animation: sangFilterAnimation 8s infinite;
+    border-radius: 0.5rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .sang-screen-glow {
+      --lightBloom: 24px;
+      background-color: #5cceff80;
+      animation: sangFilterAnimation 8s infinite;
+    }
+  }
+
+  @keyframes sangFilterAnimation {
+    0% {
+      filter: blur(var(--lightBloom, 18px)) hue-rotate(0deg);
+    }
+    5% {
+      filter: blur(var(--lightBloom, 18px)) hue-rotate(100deg);
+    }
+    10% {
+      filter: blur(var(--lightBloom, 18px)) hue-rotate(10deg);
+    }
+    15% {
+      filter: blur(var(--lightBloom, 18px)) hue-rotate(24deg);
+    }
+    50% {
+      filter: blur(var(--lightBloom, 18px)) hue-rotate(100deg);
+    }
+    to {
+      filter: blur(var(--lightBloom, 18px)) hue-rotate(0deg);
+    }
+  }
+
+  /* Advanced interaction animations */
+  @keyframes sangBubbleFloat {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes sangLaptopLidOpen {
+    0% {
+      transform: perspective(1000px) rotateX(-90deg) scale(0.8);
+      opacity: 0;
+    }
+    50% {
+      transform: perspective(1000px) rotateX(-45deg) scale(0.9);
+      opacity: 0.7;
+    }
+    100% {
+      transform: perspective(1000px) rotateX(-35deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes sangHandFidget {
+    0%, 100% {
+      transform: translateY(28px);
+    }
+    25% {
+      transform: translateY(20px);
+    }
+    50% {
+      transform: translateY(20px);
+    }
+    75% {
+      transform: translateY(20px);
+    }
+  }
+
+  @keyframes sangSpriteScale {
+    0%, 100% {
+      transform: scaleX(1) scaleY(1) translateZ(-100px);
+    }
+    25% {
+      transform: scaleX(1.05) scaleY(1.05) translateZ(-100px);
+    }
+    50% {
+      transform: scaleX(1.05) scaleY(1.05) translateZ(-100px);
+    }
+    75% {
+      transform: scaleX(1.05) scaleY(1.05) translateZ(-100px);
+    }
+  }
+
+  /* Enhanced hover and interaction states */
+  .sang-laptop-container:hover .sang-laptop-lid-image {
+    transform: perspective(1000px) rotateX(-5deg) scale(1.02);
+    transition: transform 0.3s ease-out;
+  }
+
+  .sang-sprite-container:hover {
+    transform: translateY(-5px) scale(1.02);
+    transition: transform 0.3s ease-out;
+  }
+
+  /* Floating bubble animation */
+  .sang-bubble-container {
+    animation: sangBubbleFloat 8s ease-in-out infinite;
+  }
+
+  /* Active animation classes */
+  .sang-laptop-active .sang-laptop-lid-image {
+    animation: sangLaptopLidOpen 1.5s ease-out 0.5s both;
+  }
+
+  .sang-laptop-active .sang-fidget-hand {
+    animation: sangHandFidget 1s ease-out infinite;
+  }
+
+  .sang-laptop-active .sang-sprite-wrapper {
+    animation: sangSpriteScale 1s ease-out infinite;
+  }
 }

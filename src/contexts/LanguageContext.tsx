@@ -309,6 +309,31 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   }, []);
 
   const t = (key: string): string => {
+    // Bubble messages için özel çeviriler
+    const bubbleTranslations = {
+      tr: {
+        "My name is Bigo": "Benim adım Bigo",
+        "I'm a designer & developer based in Turkey": "Türkiye merkezli bir tasarımcı ve geliştiriciyim",
+        "Crafting digital experiences with passion and precision": "Tutku ve hassasiyetle dijital deneyimler yaratıyoruz"
+      },
+      en: {
+        "My name is Bigo": "My name is Bigo",
+        "I'm a designer & developer based in Turkey": "I'm a designer & developer based in Turkey",
+        "Crafting digital experiences with passion and precision": "Crafting digital experiences with passion and precision"
+      },
+      ar: {
+        "My name is Bigo": "اسمي بيجو",
+        "I'm a designer & developer based in Turkey": "أنا مصمم ومطور مقيم في تركيا",
+        "Crafting digital experiences with passion and precision": "صناعة تجارب رقمية بشغف ودقة"
+      }
+    };
+
+    // Önce bubble çevirilerini kontrol et
+    if (bubbleTranslations[language as keyof typeof bubbleTranslations]?.[key as keyof typeof bubbleTranslations.tr]) {
+      return bubbleTranslations[language as keyof typeof bubbleTranslations][key as keyof typeof bubbleTranslations.tr];
+    }
+
+    // Sonra normal çevirileri kontrol et
     return translations[language as keyof typeof translations]?.[key as keyof typeof translations.tr] || key;
   };
 

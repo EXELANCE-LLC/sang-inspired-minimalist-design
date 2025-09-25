@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import Navigation from "@/components/Navigation";
-import VisitorStats from "@/components/VisitorStats";
+ 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -98,8 +97,7 @@ const BlogPost = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-soft">
-        <Navigation />
-        <VisitorStats />
+        {/* Navigation and ActiveVisitorsBar are global */}
         <main className="pt-32 pb-16">
           <article className="max-w-4xl mx-auto px-8">
             <div className="mb-6 flex items-center gap-4">
@@ -123,7 +121,7 @@ const BlogPost = () => {
   if (!post) {
     return (
       <div className="min-h-screen bg-gradient-soft">
-        <Navigation />
+        {/* Navigation is global */}
         <div className="pt-32 pb-16 px-8 text-center">
           <h1 className="text-4xl font-light mb-4">Blog yazısı bulunamadı</h1>
           <Link to="/blog">
@@ -169,8 +167,7 @@ const BlogPost = () => {
       </Helmet>
 
       <div className="min-h-screen bg-gradient-soft">
-        <Navigation />
-        <VisitorStats />
+        {/* Navigation and ActiveVisitorsBar are global */}
 
         <main className="pt-32 pb-16">
           <article className="max-w-4xl mx-auto px-8">

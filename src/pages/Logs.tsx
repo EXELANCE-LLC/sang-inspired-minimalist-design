@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Navigation from "@/components/Navigation";
-import VisitorStats from "@/components/VisitorStats";
+ 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -93,8 +92,7 @@ const Logs = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-soft">
-        <Navigation />
-        <VisitorStats />
+        {/* Navigation and ActiveVisitorsBar are global */}
         <main className="pt-32 pb-16 px-8">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -146,8 +144,7 @@ const Logs = () => {
       </Helmet>
 
       <div className="min-h-screen bg-gradient-soft">
-        <Navigation />
-        <VisitorStats />
+        {/* Navigation and ActiveVisitorsBar are global */}
         
         <main className="pt-32 pb-16 px-8">
           <div className="max-w-6xl mx-auto">

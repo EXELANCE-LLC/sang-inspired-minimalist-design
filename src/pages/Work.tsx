@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Navigation from "@/components/Navigation";
-import VisitorStats from "@/components/VisitorStats";
+ 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -31,8 +30,7 @@ const Work = () => {
       </Helmet>
 
       <div className="min-h-screen bg-gradient-soft">
-        <Navigation />
-        <VisitorStats />
+        {/* Navigation and ActiveVisitorsBar are global */}
 
         <main className="pt-32 pb-16 px-8">
           <div className="max-w-6xl mx-auto">

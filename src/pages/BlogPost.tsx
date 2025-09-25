@@ -10,6 +10,7 @@ import { Calendar, Clock, Tag, User, ArrowLeft, ExternalLink } from "lucide-reac
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface BlogPostData {
   id: string;
@@ -48,7 +49,6 @@ const BlogPost = () => {
     const fetchPost = async () => {
       try {
         setLoading(true);
-        // Fetch all blog posts to find the one with matching slug
         const blogFiles = [
           '1-ai-and-future-software-development.json',
           '2-web3-blockchain-current-state.json',
@@ -60,25 +60,26 @@ const BlogPost = () => {
           '8-devops-cicd-practices.json'
         ];
 
-        let foundPost = null;
-        const allPosts: BlogPostData[] = [];
-
-        for (const file of blogFiles) {
-          const response = await fetch(`/blogs/${file}`);
-          if (response.ok) {
-            const data = await response.json();
-            allPosts.push(data);
-            if (data.slug === slug) {
-              foundPost = data;
+        const results = await Promise.all(
+          blogFiles.map(async (file) => {
+            try {
+              const response = await fetch(`/blogs/${file}`);
+              if (!response.ok) return null;
+              return (await response.json()) as BlogPostData;
+            } catch (error) {
+              console.error(`Error fetching ${file}:`, error);
+              return null;
             }
-          }
-        }
+          })
+        );
 
-        if (foundPost) {
-          setPost(foundPost);
-          // Get related posts from same category
+        const allPosts = results.filter((p): p is BlogPostData => Boolean(p));
+        const found = allPosts.find(p => p.slug === slug) || null;
+
+        if (found) {
+          setPost(found);
           const related = allPosts
-            .filter(p => p.id !== foundPost.id && p.category.en === foundPost.category.en)
+            .filter(p => p.id !== found.id && p.category.en === found.category.en)
             .slice(0, 3);
           setRelatedPosts(related);
         }
@@ -96,11 +97,25 @@ const BlogPost = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-soft flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Loading...</p>
-        </div>
+      <div className="min-h-screen bg-gradient-soft">
+        <Navigation />
+        <VisitorStats />
+        <main className="pt-32 pb-16">
+          <article className="max-w-4xl mx-auto px-8">
+            <div className="mb-6 flex items-center gap-4">
+              <Skeleton className="h-6 w-24" />
+              <Skeleton className="h-4 w-16" />
+            </div>
+            <Skeleton className="h-10 w-3/4 mb-4" />
+            <Skeleton className="h-6 w-2/3 mb-8" />
+            <Skeleton className="h-64 w-full mb-8 rounded-lg" />
+            <div className="space-y-4">
+              {Array.from({ length: 6 }).map((_, idx) => (
+                <Skeleton key={idx} className="h-4 w-full" />
+              ))}
+            </div>
+          </article>
+        </main>
       </div>
     );
   }

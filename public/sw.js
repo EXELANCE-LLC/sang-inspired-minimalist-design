@@ -1,12 +1,12 @@
-const CACHE_NAME = 'tech-blog-v1';
+const CACHE_NAME = 'tech-blog-v2';
 const urlsToCache = [
   '/',
   '/index.html',
   '/src/main.tsx',
   '/src/App.css',
   '/src/index.css',
-  '/src/assets/Slussen-Variable[wdth,wght,slnt].ttf',
-  '/src/assets/Slussen-Mono-Variable[wght,slnt].ttf'
+  '/Slussen-Variable[wdth,wght,slnt].ttf',
+  '/Slussen-Mono-Variable[wght,slnt].ttf'
 ];
 
 // Install event - cache assets

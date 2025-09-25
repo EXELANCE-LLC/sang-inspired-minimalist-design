@@ -143,11 +143,19 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  code, pre, kbd, samp {
+    font-family: 'Slussen Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Slussen Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans Arabic', sans-serif;
     font-weight: 400;
     font-variation-settings: "wght" 400;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-transform: capitalize;
   }
 
   .dark body {

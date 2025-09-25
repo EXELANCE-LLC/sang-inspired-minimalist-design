@@ -28,7 +28,7 @@ const Navigation = () => {
               >
                 <div className="flex items-center space-x-2">
                   <Icon size={16} />
-                  <span>{t(label)}</span>
+                  <span className="capitalize">{t(label)}</span>
                 </div>
               </Link>
             );

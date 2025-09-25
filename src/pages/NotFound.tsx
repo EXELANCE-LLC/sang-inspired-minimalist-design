@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import Navigation from "@/components/Navigation";
+ 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Home, Search, ArrowLeft } from "lucide-react";
 import { Helmet } from "react-helmet-async";
@@ -39,7 +39,7 @@ const NotFound = () => {
       </Helmet>
       
       <div className="min-h-screen bg-gradient-soft">
-        <Navigation />
+        
         
         <div className="flex items-center justify-center min-h-[80vh] px-8">
           <div className="text-center space-y-8 max-w-2xl">

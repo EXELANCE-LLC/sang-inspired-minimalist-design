@@ -12,6 +12,8 @@ import WorkDetail from "./pages/WorkDetail";
 import Logs from "./pages/Logs";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
+import Navigation from "@/components/Navigation";
+import ActiveVisitorsBar from "@/components/ActiveVisitorsBar";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +26,9 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              {/* Global fixed navigation and persistent compact visitors bar */}
+              <Navigation />
+              <ActiveVisitorsBar />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/work" element={<Work />} />

@@ -231,7 +231,7 @@ const Logs = () => {
                   variant={filterCategory === category ? "default" : "outline"}
                   size="sm"
                   onClick={() => setFilterCategory(category)}
-                  className="capitalize"
+                  className=""
                 >
                   {category === "all" 
                     ? (language === 'tr' ? "Tümü" : "All")

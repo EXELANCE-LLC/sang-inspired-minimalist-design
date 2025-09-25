@@ -154,9 +154,7 @@ All colors MUST be HSL.
     font-variation-settings: "wght" 400;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    text-transform: capitalize;
-  }
+  /* Avoid forced capitalization to preserve correct Turkish title casing (İ, I, Ö, Ç, Ş) */
 
   .dark body {
     background-color: rgb(24 24 27 / var(--tw-bg-opacity));
@@ -183,6 +181,12 @@ All colors MUST be HSL.
 
   [dir="rtl"] .justify-between {
     flex-direction: row-reverse;
+  }
+
+  /* Turkish language: avoid automatic capitalization which breaks characters like İ, I, Ö, Ç, Ş */
+  html[lang="tr"] .capitalize,
+  html[lang="tr"] .uppercase {
+    text-transform: none;
   }
 }
 

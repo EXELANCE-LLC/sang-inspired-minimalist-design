@@ -33,19 +33,6 @@ const Index = () => {
       {/* Navigation and ActiveVisitorsBar are now mounted globally in App */}
       
       <main className="flex flex-col items-center justify-center min-h-screen px-8 pt-16 relative">
-        <div className={`text-center mb-8 transition-all duration-1000 ease-out ${
-          showElements.title 
-            ? 'opacity-100 transform translate-y-0' 
-            : 'opacity-0 transform translate-y-8'
-        }`}>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-foreground mb-6 tracking-wide">
-            <span className="inline-block" style={{ 
-              animation: showElements.title ? 'fadeInUp 1s ease-out 0.2s both' : 'none' 
-            }}>
-              {t("Hi there!")}
-            </span>
-          </h1>
-        </div>
 
         {/* Subtitle removed per request */}
         

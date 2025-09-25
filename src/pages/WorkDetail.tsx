@@ -95,7 +95,7 @@ const WorkDetail = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="bg-muted/50 rounded-lg p-4">
                   <p className="text-sm font-medium text-muted-foreground">{t("category")}</p>
-                  <p className="font-medium capitalize">{project.category}</p>
+                  <p className="font-medium">{project.category}</p>
                 </div>
                 <div className="bg-muted/50 rounded-lg p-4">
                   <p className="text-sm font-medium text-muted-foreground">{t("duration")}</p>

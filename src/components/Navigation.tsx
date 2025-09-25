@@ -15,7 +15,7 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
+    <nav id="site-navigation" className="fixed top-8 left-1/2 -translate-x-1/2 z-50">
       <div className="bg-nav-background/80 backdrop-blur-sm rounded-full px-2 py-2 shadow-nav border border-border">
         <div className="flex items-center space-x-1">
           {navItems.map(({ path, icon: Icon, label }) => {
@@ -28,7 +28,7 @@ const Navigation = () => {
               >
                 <div className="flex items-center space-x-2">
                   <Icon size={16} />
-                  <span className="capitalize">{t(label)}</span>
+                  <span>{t(label)}</span>
                 </div>
               </Link>
             );

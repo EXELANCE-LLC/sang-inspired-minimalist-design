@@ -9,9 +9,9 @@ interface LanguageContextType {
 
 const translations = {
   tr: {
-    home: "ev",
-    work: "iş", 
-    logs: "blog",
+    home: "Ev",
+    work: "İş", 
+    logs: "Blog",
     "Hi there!": "Merhaba!",
     "I'm a designer and developer who loves creating beautiful, functional experiences.": "Güzel ve işlevsel deneyimler yaratmayı seven bir tasarımcı ve geliştiriciyim.",
     "Work": "İş",

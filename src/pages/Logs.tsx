@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, Clock, Tag, User, ArrowRight } from "lucide-react";
 import { Helmet } from "react-helmet-async";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface BlogPost {
   id: string;
@@ -48,21 +49,23 @@ const Logs = () => {
           '8-devops-cicd-practices.json'
         ];
 
-        const posts: BlogPost[] = [];
-        
-        for (const file of blogFiles) {
-          try {
-            const response = await fetch(`/blogs/${file}`);
-            if (response.ok) {
-              const data = await response.json();
-              posts.push(data);
+        const results = await Promise.all(
+          blogFiles.map(async (file) => {
+            try {
+              const response = await fetch(`/blogs/${file}`);
+              if (!response.ok) return null;
+              return (await response.json()) as BlogPost;
+            } catch (error) {
+              console.error(`Error fetching ${file}:`, error);
+              return null;
             }
-          } catch (error) {
-            console.error(`Error fetching ${file}:`, error);
-          }
-        }
+          })
+        );
 
-        setBlogPosts(posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()));
+        const posts = results.filter((p): p is BlogPost => Boolean(p));
+        setBlogPosts(
+          posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        );
       } catch (error) {
         console.error('Error fetching blog posts:', error);
       } finally {
@@ -89,11 +92,44 @@ const Logs = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-soft flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-muted-foreground">Loading...</p>
-        </div>
+      <div className="min-h-screen bg-gradient-soft">
+        <Navigation />
+        <VisitorStats />
+        <main className="pt-32 pb-16 px-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <Skeleton className="h-10 w-64 mx-auto mb-4" />
+              <Skeleton className="h-5 w-96 mx-auto" />
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {Array.from({ length: 6 }).map((_, idx) => (
+                <Skeleton key={idx} className="h-8 w-20 rounded-full" />
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {Array.from({ length: 6 }).map((_, idx) => (
+                <div key={idx} className="rounded-lg border bg-card p-6 shadow-soft">
+                  <div className="flex items-center justify-between mb-4">
+                    <Skeleton className="h-6 w-24" />
+                    <Skeleton className="h-4 w-16" />
+                  </div>
+                  <Skeleton className="h-6 w-3/4 mb-3" />
+                  <Skeleton className="h-4 w-full mb-2" />
+                  <Skeleton className="h-4 w-5/6 mb-2" />
+                  <div className="flex items-center justify-between mt-4">
+                    <div className="flex items-center gap-2">
+                      <Skeleton className="h-5 w-5 rounded-full" />
+                      <Skeleton className="h-4 w-24" />
+                    </div>
+                    <Skeleton className="h-4 w-20" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </main>
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import VisitorStats from "@/components/VisitorStats";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -38,7 +38,7 @@ const Work = () => {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h1 className="text-4xl font-light text-foreground mb-4">
-                {t("Work")}
+                {t("work")}
               </h1>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 {language === 'tr' 

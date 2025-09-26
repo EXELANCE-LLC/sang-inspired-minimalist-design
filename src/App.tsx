@@ -14,6 +14,7 @@ import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import Navigation from "@/components/Navigation";
 import ActiveVisitorsBar from "@/components/ActiveVisitorsBar";
+import GtagRouteTracker from "@/components/GtagRouteTracker";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
               {/* Global fixed navigation and persistent compact visitors bar */}
               <Navigation />
               <ActiveVisitorsBar />
+              <GtagRouteTracker />
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/work" element={<Work />} />

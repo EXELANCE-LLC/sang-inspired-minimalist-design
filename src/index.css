@@ -6,7 +6,7 @@
 @font-face {
   font-family: 'Slussen Variable';
   src: local('Slussen Variable'),
-       url('/Slussen-Variable[wdth,wght,slnt].ttf') format('truetype');
+       url('./assets/Slussen-Variable[wdth,wght,slnt].ttf') format('truetype');
   font-weight: 100 900;
   font-stretch: 75% 125%;
   font-style: normal;
@@ -16,7 +16,7 @@
 @font-face {
   font-family: 'Slussen Mono Variable';
   src: local('Slussen Mono Variable'),
-       url('/Slussen-Mono-Variable[wght,slnt].ttf') format('truetype');
+       url('./assets/Slussen-Mono-Variable[wght,slnt].ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -191,6 +191,40 @@ All colors MUST be HSL.
 }
 
 @layer components {
+  /* Sparkle effect (from provided HTML, adapted for React/TS) */
+  .sparkling {
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+    font-weight: 700;
+    color: #FFC700; /* star color for text, stars themselves use fill */
+  }
+
+  .sparkling > span {
+    z-index: -1;
+    position: absolute;
+    display: block;
+    animation: sparkle-comeInOut 700ms forwards;
+    pointer-events: none; /* don't block text selection/clicks */
+    background: transparent !important; /* ensure transparent background */
+  }
+
+  .sparkling > span > svg {
+    display: block;
+    animation: sparkle-spin 1000ms linear;
+    background: transparent !important; /* ensure icon background transparent */
+  }
+
+  @keyframes sparkle-comeInOut {
+    0% { transform: scale(0); }
+    50% { transform: scale(1); }
+    100% { transform: scale(0); }
+  }
+
+  @keyframes sparkle-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(180deg); }
+  }
   /* Navigation styles */
   .nav-link {
     @apply relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300;

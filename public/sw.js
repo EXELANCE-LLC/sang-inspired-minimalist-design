@@ -1,12 +1,11 @@
-const CACHE_NAME = 'tech-blog-v2';
+const CACHE_NAME = 'tech-blog-v3';
+// Precache only truly static, version-agnostic assets from public/
 const urlsToCache = [
   '/',
-  '/index.html',
-  '/src/main.tsx',
-  '/src/App.css',
-  '/src/index.css',
   '/Slussen-Variable[wdth,wght,slnt].ttf',
-  '/Slussen-Mono-Variable[wght,slnt].ttf'
+  '/Slussen-Mono-Variable[wght,slnt].ttf',
+  '/robots.txt',
+  '/site.webmanifest',
 ];
 
 // Install event - cache assets
@@ -48,6 +47,14 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // For navigations/HTML requests, use network-first to avoid stale index.html
+  if (request.mode === 'navigate' || request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(
+      fetch(request).catch(() => caches.match('/'))
+    );
+    return;
+  }
+
   // Network first for API calls
   if (request.url.includes('/api/') || request.url.includes('/blogs/')) {
     event.respondWith(
@@ -67,7 +74,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Cache first for assets
+  // Cache first for other same-origin assets (CSS/JS/images/fonts)
   event.respondWith(
     caches.match(request).then(response => {
       if (response) {

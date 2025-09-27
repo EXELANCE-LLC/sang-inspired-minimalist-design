@@ -16,11 +16,6 @@ const Navigation = () => {
 
   return (
     <nav id="site-navigation" className="fixed top-8 left-1/2 -translate-x-1/2 z-50 relative">
-      <div
-        className="pointer-events-none select-none absolute -top-3 left-1/2 -translate-x-1/2 z-10 text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted-foreground font-sans"
-      >
-        BETA VERSION
-      </div>
       <div className="bg-nav-background/80 backdrop-blur-sm rounded-full px-2 py-2 shadow-nav border border-border">
         <div className="flex items-center space-x-1">
           {navItems.map(({ path, icon: Icon, label }) => {

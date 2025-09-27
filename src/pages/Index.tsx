@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
  
 import HomePageComponent from "@/components/HomePageComponent";
+import SparklingText from "@/components/SparklingText";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
@@ -50,7 +51,7 @@ const Index = () => {
           : 'opacity-0 transform translate-y-4'
       }`}>
         <p className="text-sm text-muted-foreground">
-          © 2024 — Made with love
+          © 2024 — Made with <SparklingText>sparkle</SparklingText>
         </p>
       </footer>
     </div>

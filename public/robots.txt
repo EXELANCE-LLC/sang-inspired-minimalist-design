@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: /sitemap.xml
+Sitemap: https://webusta.org/sitemap.xml
 
 # Crawl-delay for considerate crawling
 Crawl-delay: 1

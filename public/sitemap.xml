@@ -3,103 +3,103 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Homepage -->
   <url>
-    <loc>https://techblog.com/</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://techblog.com/"/>
+    <loc>https://webusta.org/</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://webusta.org/"/>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <!-- Work Page -->
   <url>
-    <loc>https://techblog.com/work</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/work"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/work"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://techblog.com/work"/>
+    <loc>https://webusta.org/work</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/work"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/work"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://webusta.org/work"/>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <!-- Blog Page -->
   <url>
-    <loc>https://techblog.com/blog</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/blog"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/blog"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://techblog.com/blog"/>
+    <loc>https://webusta.org/blog</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://webusta.org/blog"/>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   
   <!-- Blog Posts -->
   <url>
-    <loc>https://techblog.com/blog/ai-and-future-software-development</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/blog/ai-and-future-software-development"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/blog/ai-and-future-software-development"/>
-    <lastmod>2024-01-15</lastmod>
+    <loc>https://webusta.org/blog/ai-and-future-software-development</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/ai-and-future-software-development"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog/ai-and-future-software-development"/>
+    <lastmod>2025-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://techblog.com/blog/web3-blockchain-current-state</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/blog/web3-blockchain-current-state"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/blog/web3-blockchain-current-state"/>
-    <lastmod>2024-01-12</lastmod>
+    <loc>https://webusta.org/blog/web3-blockchain-current-state</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/web3-blockchain-current-state"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog/web3-blockchain-current-state"/>
+    <lastmod>2025-09-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://techblog.com/blog/microservices-modern-backend</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/blog/microservices-modern-backend"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/blog/microservices-modern-backend"/>
-    <lastmod>2024-01-10</lastmod>
+    <loc>https://webusta.org/blog/microservices-modern-backend</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/microservices-modern-backend"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog/microservices-modern-backend"/>
+    <lastmod>2025-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://techblog.com/blog/cyber-security-bug-bounty</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/blog/cyber-security-bug-bounty"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/blog/cyber-security-bug-bounty"/>
-    <lastmod>2024-01-08</lastmod>
+    <loc>https://webusta.org/blog/cyber-security-bug-bounty</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/cyber-security-bug-bounty"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog/cyber-security-bug-bounty"/>
+    <lastmod>2025-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://techblog.com/blog/react-19-modern-frontend</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/blog/react-19-modern-frontend"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/blog/react-19-modern-frontend"/>
-    <lastmod>2024-01-06</lastmod>
+    <loc>https://webusta.org/blog/react-19-modern-frontend</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/react-19-modern-frontend"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog/react-19-modern-frontend"/>
+    <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://techblog.com/blog/edge-computing-serverless</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/blog/edge-computing-serverless"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/blog/edge-computing-serverless"/>
-    <lastmod>2024-01-04</lastmod>
+    <loc>https://webusta.org/blog/edge-computing-serverless</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/edge-computing-serverless"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog/edge-computing-serverless"/>
+    <lastmod>2025-09-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://techblog.com/blog/data-science-machine-learning</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/blog/data-science-machine-learning"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/blog/data-science-machine-learning"/>
-    <lastmod>2024-01-02</lastmod>
+    <loc>https://webusta.org/blog/data-science-machine-learning</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/data-science-machine-learning"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog/data-science-machine-learning"/>
+    <lastmod>2025-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://techblog.com/blog/devops-cicd-practices</loc>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://techblog.com/blog/devops-cicd-practices"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://techblog.com/blog/devops-cicd-practices"/>
-    <lastmod>2023-12-30</lastmod>
+    <loc>https://webusta.org/blog/devops-cicd-practices</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/devops-cicd-practices"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog/devops-cicd-practices"/>
+    <lastmod>2025-09-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

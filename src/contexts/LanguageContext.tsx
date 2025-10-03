@@ -305,16 +305,19 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     // Bubble messages için özel çeviriler
     const bubbleTranslations = {
       tr: {
+        "Hi there!": "Merhaba!",
         "My name is Bigo": "Benim adım Bigo",
         "I'm a designer & developer based in Turkey": "Türkiye merkezli bir tasarımcı ve geliştiriciyim",
         "Crafting digital experiences with passion and precision": "Tutku ve hassasiyetle dijital deneyimler yaratıyoruz"
       },
       en: {
+        "Hi there!": "Hi there!",
         "My name is Bigo": "My name is Bigo",
         "I'm a designer & developer based in Turkey": "I'm a designer & developer based in Turkey",
         "Crafting digital experiences with passion and precision": "Crafting digital experiences with passion and precision"
       },
       ar: {
+        "Hi there!": "مرحباً!",
         "My name is Bigo": "اسمي بيجو",
         "I'm a designer & developer based in Turkey": "أنا مصمم ومطور مقيم في تركيا",
         "Crafting digital experiences with passion and precision": "صناعة تجارب رقمية بشغف ودقة"

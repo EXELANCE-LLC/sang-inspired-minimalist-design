@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -408,41 +408,58 @@ const LaptopGraphic = ({ onLoad }: { onLoad: () => void }) => {
 
 // Main HomePageComponent
 const HomePageComponent = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [messages, setMessages] = useState<string[]>([]);
   const clickCountRef = useRef(2);
+  const messageIndexRef = useRef(0);
+  const [isAnimationStarted, setIsAnimationStarted] = useState(false);
 
-  const messageSequence = [
+  // Get message sequence based on current language
+  const getMessageSequence = useCallback(() => [
     { timeout: 2, content: t("Hi there!") },
     { timeout: 2, content: t("My name is Bigo") },
     { timeout: 4, content: t("I'm a designer & developer based in Turkey") }
-  ];
+  ], [t]);
 
-  const handleHomeGraphicLoaded = () => {
-    setTimeout(() => {
-      startMessageSequence(messageSequence);
-    }, 2000);
-  };
-
-  let messageIndex = 0;
-
-  const startMessageSequence = (sequence: typeof messageSequence) => {
-    if (messageIndex < sequence.length) {
-      const currentMessage = sequence[messageIndex];
-      addMessage(currentMessage.content);
-      messageIndex++;
-      setTimeout(() => {
-        startMessageSequence(sequence);
-      }, currentMessage.timeout * 1000);
-    }
-  };
-
-  const addMessage = (message: string) => {
+  const addMessage = useCallback((message: string) => {
     setMessages(prev => {
       const newMessages = prev.length >= 3 ? [...prev.slice(1), message] : [...prev, message];
       return newMessages;
     });
-  };
+  }, []);
+
+  const startMessageSequence = useCallback((sequence: ReturnType<typeof getMessageSequence>) => {
+    if (messageIndexRef.current < sequence.length) {
+      const currentMessage = sequence[messageIndexRef.current];
+      addMessage(currentMessage.content);
+      messageIndexRef.current++;
+      setTimeout(() => {
+        startMessageSequence(sequence);
+      }, currentMessage.timeout * 1000);
+    }
+  }, [addMessage]);
+
+  const handleHomeGraphicLoaded = useCallback(() => {
+    setTimeout(() => {
+      setIsAnimationStarted(true);
+      messageIndexRef.current = 0;
+      startMessageSequence(getMessageSequence());
+    }, 2000);
+  }, [getMessageSequence, startMessageSequence]);
+
+  // Restart message sequence when language changes
+  useEffect(() => {
+    if (isAnimationStarted) {
+      // Clear current messages
+      setMessages([]);
+      // Reset index
+      messageIndexRef.current = 0;
+      // Start new sequence with updated translations
+      setTimeout(() => {
+        startMessageSequence(getMessageSequence());
+      }, 500);
+    }
+  }, [language, isAnimationStarted, getMessageSequence, startMessageSequence]);
 
   return (
     <section className="flex overflow-hidden w-full min-h-[30rem]">

@@ -9,6 +9,8 @@ import { Calendar, Clock, Tag, User, ArrowLeft, ExternalLink } from "lucide-reac
 import { Helmet } from "react-helmet-async";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface BlogPostData {
@@ -43,6 +45,29 @@ const BlogPost = () => {
   const [post, setPost] = useState<BlogPostData | null>(null);
   const [loading, setLoading] = useState(true);
   const [relatedPosts, setRelatedPosts] = useState<BlogPostData[]>([]);
+
+  // Custom sanitize schema to allow iframes and other HTML elements
+  const sanitizeSchema = {
+    ...defaultSchema,
+    attributes: {
+      ...defaultSchema.attributes,
+      iframe: [
+        'src',
+        'width',
+        'height',
+        'frameborder',
+        'allow',
+        'allowfullscreen',
+        'title',
+        'loading',
+        'class',
+        'style'
+      ],
+      div: [...(defaultSchema.attributes?.div || []), 'class', 'style'],
+      span: [...(defaultSchema.attributes?.span || []), 'class', 'style'],
+    },
+    tagNames: [...(defaultSchema.tagNames || []), 'iframe'],
+  };
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -251,6 +276,7 @@ const BlogPost = () => {
             <div className="prose prose-lg max-w-none dark:prose-invert mb-12">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw, [rehypeSanitize, sanitizeSchema]]}
                 components={{
                   h1: ({ children }) => <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>,
                   h2: ({ children }) => <h2 className="text-2xl font-semibold mt-8 mb-4">{children}</h2>,
@@ -264,12 +290,14 @@ const BlogPost = () => {
                       {children}
                     </blockquote>
                   ),
-                  code: ({ inline, children }) => 
-                    inline ? (
+                  code: ({ children, className }) => {
+                    const isInline = !className?.includes('language-');
+                    return isInline ? (
                       <code className="bg-muted px-1 py-0.5 rounded text-sm">{children}</code>
                     ) : (
-                      <code className="block bg-muted p-4 rounded-lg overflow-x-auto">{children}</code>
-                    ),
+                      <code className={`block bg-muted p-4 rounded-lg overflow-x-auto ${className || ''}`}>{children}</code>
+                    );
+                  },
                   pre: ({ children }) => <pre className="mb-4">{children}</pre>,
                   img: ({ src, alt }) => (
                     <img src={src} alt={alt} className="rounded-lg shadow-md my-6" loading="lazy" />
@@ -278,6 +306,18 @@ const BlogPost = () => {
                     <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
                       {children}
                     </a>
+                  ),
+                  iframe: ({ src, width, height, ...props }) => (
+                    <div className="my-8 relative w-full" style={{ paddingBottom: '56.25%' }}>
+                      <iframe
+                        src={src}
+                        className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        loading="lazy"
+                        {...props}
+                      />
+                    </div>
                   ),
                 }}
               >

@@ -211,34 +211,21 @@ const detectLanguage = (): string => {
     // Get browser language preferences (most reliable)
     const browserLangs = navigator.languages || [navigator.language];
     
-    console.log('Browser languages:', browserLangs);
-    
     // Check each browser language preference in order
     for (const lang of browserLangs) {
       const langCode = lang.split('-')[0].toLowerCase();
       
       // Direct matches for our supported languages
-      if (langCode === 'tr') {
-        console.log('Detected Turkish from browser language');
-        return 'tr';
-      }
-      if (langCode === 'ar') {
-        console.log('Detected Arabic from browser language');
-        return 'ar';
-      }
-      if (langCode === 'en') {
-        console.log('Detected English from browser language');
-        return 'en';
-      }
+      if (langCode === 'tr') return 'tr';
+      if (langCode === 'ar') return 'ar';
+      if (langCode === 'en') return 'en';
     }
 
     // Secondary: Check timezone as a hint (less reliable but helpful)
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    console.log('Timezone:', timezone);
 
     // Turkey timezone
     if (timezone.includes('Istanbul') || timezone.includes('Turkey')) {
-      console.log('Detected Turkey from timezone');
       return 'tr';
     }
 
@@ -249,16 +236,13 @@ const detectLanguage = (): string => {
     ];
     
     if (arabicTimezones.some(tz => timezone.includes(tz))) {
-      console.log('Detected Arabic region from timezone');
       return 'ar';
     }
 
     // Default to English
-    console.log('No specific language detected, using English as default');
     return 'en';
 
   } catch (error) {
-    console.error('Language detection error:', error);
     // Fallback to English
     return 'en';
   }
@@ -291,7 +275,6 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
 
   // Custom setLanguage that saves to localStorage
   const setLanguage = useCallback((lang: string) => {
-    console.log('💾 Saving language preference:', lang);
     setLanguageState(lang);
     localStorage.setItem('preferredLanguage', lang);
   }, []);
@@ -302,20 +285,17 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
         // Priority 1: Check localStorage for saved user preference
         const savedLang = localStorage.getItem('preferredLanguage');
         if (savedLang && ['tr', 'en', 'ar'].includes(savedLang)) {
-          console.log('✅ Using saved language preference:', savedLang);
           setLanguageState(savedLang);
           return;
         }
 
         // Priority 2: Auto-detect language from browser/system
         const detectedLang = detectLanguage();
-        console.log('✅ Using detected language:', detectedLang);
         setLanguageState(detectedLang);
         
         // Don't save auto-detected language to localStorage
         // Only save when user manually changes language
       } catch (error) {
-        console.warn('⚠️ Language detection failed, using default:', error);
         setLanguageState('en'); // Priority 3: Fallback to English
       }
     };
@@ -324,24 +304,21 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   }, []);
 
   const t = useCallback((key: string): string => {
-    console.log(`🔍 [t] Translating "${key}" | Current language: ${language}`);
-    
     // Önce bubble çevirilerini kontrol et
-    const bubbleLang = language as keyof typeof bubbleTranslations;
-    const bubbleKey = key as keyof typeof bubbleTranslations.tr;
-    
-    if (bubbleTranslations[bubbleLang]?.[bubbleKey]) {
-      const translation = bubbleTranslations[bubbleLang][bubbleKey];
-      console.log(`✅ [t] Bubble translation (${language}): "${key}" → "${translation}"`);
+    const currentLangBubbleTranslations = bubbleTranslations[language as keyof typeof bubbleTranslations];
+    if (currentLangBubbleTranslations && key in currentLangBubbleTranslations) {
+      const translation = currentLangBubbleTranslations[key as keyof typeof currentLangBubbleTranslations];
       return translation;
     }
 
     // Sonra normal çevirileri kontrol et
-    const normalLang = language as keyof typeof translations;
-    const normalKey = key as keyof typeof translations.tr;
-    const translation = translations[normalLang]?.[normalKey] || key;
-    console.log(`✅ [t] Normal translation (${language}): "${key}" → "${translation}"`);
-    return translation;
+    const currentLangTranslations = translations[language as keyof typeof translations];
+    if (currentLangTranslations && key in currentLangTranslations) {
+      const translation = currentLangTranslations[key as keyof typeof currentLangTranslations];
+      return translation;
+    }
+    
+    return key;
   }, [language]);
 
   const isRTL = language === 'ar';

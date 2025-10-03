@@ -167,7 +167,7 @@ const BubbleMessages = ({ messages }: { messages: string[] }) => {
           ? 'right-0 sm:right-52 sm:items-end' 
           : 'left-0 sm:left-52 sm:items-start'
       } sm:justify-end`}
-      style={{ perspective: '50rem' }}
+      style={{ perspective: '50rem', direction: 'ltr' }}
       animate={{ translateY: -8 }}
       transition={{
         repeat: Infinity,
@@ -234,7 +234,8 @@ const BubbleMessages = ({ messages }: { messages: string[] }) => {
                   animState === 'show' ? 'bg-lime-400 text-black text-opacity-100' :
                   animState === 'midground' ? 'bg-lime-300 dark:bg-lime-600 text-opacity-50' :
                   'bg-lime-100 dark:bg-lime-800 text-opacity-25'
-                }`}>
+                }`}
+                style={{ direction: 'ltr' }}>
                   {isLast && (
                     <div className={`absolute bottom-[-2px] z-[-10] w-[25px] h-[24px] ${
                       isRTL ? 'right-[-4px] scale-x-[-1]' : 'left-[-4px]'
@@ -259,7 +260,8 @@ const BubbleMessages = ({ messages }: { messages: string[] }) => {
                   )}
                   <span className={`relative z-10 inline-block select-none text-lg leading-tight font-medium ${
                     isRTL ? 'text-right' : 'text-left'
-                  }`}>
+                  }`}
+                  style={{ direction: isRTL ? 'rtl' : 'ltr' }}>
                     {message}
                   </span>
                 </div>
@@ -427,17 +429,11 @@ const HomePageComponent = () => {
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
 
   // Get message sequence based on current language
-  // KRITIK: language dependency eklenmeli ki her dil değişiminde yeni translations alsın
-  const getMessageSequence = useCallback(() => {
-    console.log(`🔄 Creating message sequence for language: ${language}`);
-    const messages = [
-      { timeout: 2, content: t("Hi there!") },
-      { timeout: 2, content: t("My name is Bigo") },
-      { timeout: 4, content: t("I'm a designer & developer based in Turkey") }
-    ];
-    console.log('📝 Message sequence:', messages);
-    return messages;
-  }, [t, language]);
+  const getMessageSequence = useCallback(() => [
+    { timeout: 2, content: t("Hi there!") },
+    { timeout: 2, content: t("My name is Bigo") },
+    { timeout: 4, content: t("I'm a designer & developer based in Turkey") }
+  ], [t]);
 
   const addMessage = useCallback((message: string) => {
     setMessages(prev => {

@@ -351,7 +351,7 @@ const LaptopGraphic = ({ onLoad }: { onLoad: () => void }) => {
       </motion.div>
 
       {/* Laptop Container */}
-      <div className="absolute inset-0 transform translate-y-[56%]" style={{ perspectiveOrigin: 'center bottom' }}>
+      <div className="absolute inset-0 transform translate-y-[60%]" style={{ perspectiveOrigin: 'center bottom' }}>
         <motion.div
           initial="closed"
           animate={isLoaded ? 'open' : 'closed'}

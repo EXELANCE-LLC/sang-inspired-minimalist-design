@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 import Navigation from "@/components/Navigation";
 import ActiveVisitorsBar from "@/components/ActiveVisitorsBar";
 import GtagRouteTracker from "@/components/GtagRouteTracker";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,8 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              {/* Scroll to top on route change */}
+              <ScrollToTop />
               {/* Global fixed navigation and persistent compact visitors bar */}
               <Navigation />
               <ActiveVisitorsBar />

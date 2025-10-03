@@ -116,15 +116,32 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Webusta LLC",
+      "alternateName": "WebustaLLC",
+      "url": "https://webusta.org",
+      "logo": "https://webusta.org/og-image.png",
+      "sameAs": [
+        "https://webusta.org"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "Tech Blog",
-      "alternateName": ["Teknoloji Blog", "مدونة التقنية"],
-      "url": "https://techblog.com",
+      "name": "Webusta LLC",
+      "alternateName": ["WebustaLLC", "Webusta"],
+      "url": "https://webusta.org",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Webusta LLC"
+      },
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://techblog.com/search?q={search_term_string}"
+          "urlTemplate": "https://webusta.org/search?q={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }

@@ -324,18 +324,23 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   }, []);
 
   const t = useCallback((key: string): string => {
-    console.log(`🔍 Translating "${key}" for language: ${language}`);
+    console.log(`🔍 [t] Translating "${key}" | Current language: ${language}`);
     
     // Önce bubble çevirilerini kontrol et
-    if (bubbleTranslations[language as keyof typeof bubbleTranslations]?.[key as keyof typeof bubbleTranslations.tr]) {
-      const translation = bubbleTranslations[language as keyof typeof bubbleTranslations][key as keyof typeof bubbleTranslations.tr];
-      console.log(`✅ Found bubble translation: "${translation}"`);
+    const bubbleLang = language as keyof typeof bubbleTranslations;
+    const bubbleKey = key as keyof typeof bubbleTranslations.tr;
+    
+    if (bubbleTranslations[bubbleLang]?.[bubbleKey]) {
+      const translation = bubbleTranslations[bubbleLang][bubbleKey];
+      console.log(`✅ [t] Bubble translation (${language}): "${key}" → "${translation}"`);
       return translation;
     }
 
     // Sonra normal çevirileri kontrol et
-    const translation = translations[language as keyof typeof translations]?.[key as keyof typeof translations.tr] || key;
-    console.log(`✅ Using translation: "${translation}"`);
+    const normalLang = language as keyof typeof translations;
+    const normalKey = key as keyof typeof translations.tr;
+    const translation = translations[normalLang]?.[normalKey] || key;
+    console.log(`✅ [t] Normal translation (${language}): "${key}" → "${translation}"`);
     return translation;
   }, [language]);
 

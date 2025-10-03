@@ -167,7 +167,7 @@ const BubbleMessages = ({ messages }: { messages: string[] }) => {
           ? 'right-0 sm:right-52 sm:items-end' 
           : 'left-0 sm:left-52 sm:items-start'
       } sm:justify-end`}
-      style={{ perspective: '50rem', direction: 'ltr' }}
+      style={{ perspective: '50rem' }}
       animate={{ translateY: -8 }}
       transition={{
         repeat: Infinity,
@@ -427,11 +427,17 @@ const HomePageComponent = () => {
   const [isAnimationStarted, setIsAnimationStarted] = useState(false);
 
   // Get message sequence based on current language
-  const getMessageSequence = useCallback(() => [
-    { timeout: 2, content: t("Hi there!") },
-    { timeout: 2, content: t("My name is Bigo") },
-    { timeout: 4, content: t("I'm a designer & developer based in Turkey") }
-  ], [t]);
+  // KRITIK: language dependency eklenmeli ki her dil değişiminde yeni translations alsın
+  const getMessageSequence = useCallback(() => {
+    console.log(`🔄 Creating message sequence for language: ${language}`);
+    const messages = [
+      { timeout: 2, content: t("Hi there!") },
+      { timeout: 2, content: t("My name is Bigo") },
+      { timeout: 4, content: t("I'm a designer & developer based in Turkey") }
+    ];
+    console.log('📝 Message sequence:', messages);
+    return messages;
+  }, [t, language]);
 
   const addMessage = useCallback((message: string) => {
     setMessages(prev => {

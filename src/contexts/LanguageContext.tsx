@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 interface LanguageContextType {
   language: string;
@@ -264,15 +264,37 @@ const detectLanguage = (): string => {
   }
 };
 
+// Bubble messages için özel çeviriler (component dışında statik)
+const bubbleTranslations = {
+  tr: {
+    "Hi there!": "Merhaba!",
+    "My name is Bigo": "Benim adım Bigo",
+    "I'm a designer & developer based in Turkey": "Türkiye merkezli bir tasarımcı ve geliştiriciyim",
+    "Crafting digital experiences with passion and precision": "Tutku ve hassasiyetle dijital deneyimler yaratıyoruz"
+  },
+  en: {
+    "Hi there!": "Hi there!",
+    "My name is Bigo": "My name is Bigo",
+    "I'm a designer & developer based in Turkey": "I'm a designer & developer based in Turkey",
+    "Crafting digital experiences with passion and precision": "Crafting digital experiences with passion and precision"
+  },
+  ar: {
+    "Hi there!": "مرحباً!",
+    "My name is Bigo": "اسمي بيجو",
+    "I'm a designer & developer based in Turkey": "أنا مصمم ومطور مقيم في تركيا",
+    "Crafting digital experiences with passion and precision": "صناعة تجارب رقمية بشغف ودقة"
+  }
+};
+
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
   const [language, setLanguageState] = useState<string>('en');
 
   // Custom setLanguage that saves to localStorage
-  const setLanguage = (lang: string) => {
+  const setLanguage = useCallback((lang: string) => {
     console.log('💾 Saving language preference:', lang);
     setLanguageState(lang);
     localStorage.setItem('preferredLanguage', lang);
-  };
+  }, []);
 
   useEffect(() => {
     const initializeLanguage = () => {
@@ -301,37 +323,21 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
     initializeLanguage();
   }, []);
 
-  const t = (key: string): string => {
-    // Bubble messages için özel çeviriler
-    const bubbleTranslations = {
-      tr: {
-        "Hi there!": "Merhaba!",
-        "My name is Bigo": "Benim adım Bigo",
-        "I'm a designer & developer based in Turkey": "Türkiye merkezli bir tasarımcı ve geliştiriciyim",
-        "Crafting digital experiences with passion and precision": "Tutku ve hassasiyetle dijital deneyimler yaratıyoruz"
-      },
-      en: {
-        "Hi there!": "Hi there!",
-        "My name is Bigo": "My name is Bigo",
-        "I'm a designer & developer based in Turkey": "I'm a designer & developer based in Turkey",
-        "Crafting digital experiences with passion and precision": "Crafting digital experiences with passion and precision"
-      },
-      ar: {
-        "Hi there!": "مرحباً!",
-        "My name is Bigo": "اسمي بيجو",
-        "I'm a designer & developer based in Turkey": "أنا مصمم ومطور مقيم في تركيا",
-        "Crafting digital experiences with passion and precision": "صناعة تجارب رقمية بشغف ودقة"
-      }
-    };
-
+  const t = useCallback((key: string): string => {
+    console.log(`🔍 Translating "${key}" for language: ${language}`);
+    
     // Önce bubble çevirilerini kontrol et
     if (bubbleTranslations[language as keyof typeof bubbleTranslations]?.[key as keyof typeof bubbleTranslations.tr]) {
-      return bubbleTranslations[language as keyof typeof bubbleTranslations][key as keyof typeof bubbleTranslations.tr];
+      const translation = bubbleTranslations[language as keyof typeof bubbleTranslations][key as keyof typeof bubbleTranslations.tr];
+      console.log(`✅ Found bubble translation: "${translation}"`);
+      return translation;
     }
 
     // Sonra normal çevirileri kontrol et
-    return translations[language as keyof typeof translations]?.[key as keyof typeof translations.tr] || key;
-  };
+    const translation = translations[language as keyof typeof translations]?.[key as keyof typeof translations.tr] || key;
+    console.log(`✅ Using translation: "${translation}"`);
+    return translation;
+  }, [language]);
 
   const isRTL = language === 'ar';
 

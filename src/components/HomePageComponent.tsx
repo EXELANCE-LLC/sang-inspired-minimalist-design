@@ -142,8 +142,10 @@ const usePreferredTheme = () => {
 
 // Bubble Messages Component
 const BubbleMessages = ({ messages }: { messages: string[] }) => {
+  const { isRTL } = useLanguage();
+  
   const moveVariants = {
-    start: { opacity: 0, x: -140, y: 40 },
+    start: { opacity: 0, x: isRTL ? 140 : -140, y: 40 },
     show: { opacity: 1, x: 0, y: 0 },
     midground: { opacity: 1, x: 0, y: 0 },
     background: { opacity: 1, x: 0, y: 4 },
@@ -160,8 +162,12 @@ const BubbleMessages = ({ messages }: { messages: string[] }) => {
 
   return (
     <motion.ul
-      className="absolute bottom-full left-0 flex flex-col w-full max-w-80 items-center justify-center sm:bottom-28 sm:left-52 sm:items-start sm:justify-end"
-      style={{ perspective: '50rem' }}
+      className={`absolute bottom-full flex flex-col w-full max-w-80 items-center justify-center sm:bottom-28 ${
+        isRTL 
+          ? 'right-0 sm:right-52 sm:items-end' 
+          : 'left-0 sm:left-52 sm:items-start'
+      } sm:justify-end`}
+      style={{ perspective: '50rem', direction: 'ltr' }}
       animate={{ translateY: -8 }}
       transition={{
         repeat: Infinity,
@@ -207,7 +213,7 @@ const BubbleMessages = ({ messages }: { messages: string[] }) => {
                 ease: [0.83, 0.005, 0.725, 0.905],
                 duration: 0.33
               }}
-              className="transform-origin-bottom-left"
+              className={isRTL ? "transform-origin-bottom-right" : "transform-origin-bottom-left"}
               layout
             >
               <motion.div
@@ -219,7 +225,9 @@ const BubbleMessages = ({ messages }: { messages: string[] }) => {
                   ease: [0.83, 0.005, 0.725, 0.905],
                   duration: 0.33
                 }}
-                className="flex w-full transform-origin-bottom-left list-none items-center justify-center sm:items-start sm:justify-start"
+                className={`flex w-full ${isRTL ? 'transform-origin-bottom-right' : 'transform-origin-bottom-left'} list-none items-center justify-center ${
+                  isRTL ? 'sm:items-end sm:justify-end' : 'sm:items-start sm:justify-start'
+                }`}
                 layout
               >
                 <div className={`rounded-2xl px-3 py-2 transition-all duration-150 relative ${
@@ -228,7 +236,9 @@ const BubbleMessages = ({ messages }: { messages: string[] }) => {
                   'bg-lime-100 dark:bg-lime-800 text-opacity-25'
                 }`}>
                   {isLast && (
-                    <div className={`absolute bottom-[-2px] left-[-4px] z-[-10] w-[25px] h-[24px] ${
+                    <div className={`absolute bottom-[-2px] z-[-10] w-[25px] h-[24px] ${
+                      isRTL ? 'right-[-4px] scale-x-[-1]' : 'left-[-4px]'
+                    } ${
                       animState === 'show' ? 'text-lime-400' :
                       animState === 'midground' ? 'text-lime-300 dark:text-lime-600' :
                       'text-lime-100 dark:text-lime-800'
@@ -247,7 +257,9 @@ const BubbleMessages = ({ messages }: { messages: string[] }) => {
                       </svg>
                     </div>
                   )}
-                  <span className="relative z-10 inline-block select-none text-lg leading-tight font-medium">
+                  <span className={`relative z-10 inline-block select-none text-lg leading-tight font-medium ${
+                    isRTL ? 'text-right' : 'text-left'
+                  }`}>
                     {message}
                   </span>
                 </div>

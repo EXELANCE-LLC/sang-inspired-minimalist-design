@@ -11,12 +11,22 @@ export default defineConfig(({ mode }) => ({
     headers: {
       'Cache-Control': 'public, max-age=31536000',
     },
+    // SPA fallback middleware - tüm route'ları index.html'e yönlendir
+    middlewareMode: false,
+    fs: {
+      strict: false,
+    },
   },
+  appType: 'spa',
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  preview: {
+    port: 8080,
+    host: "::",
   },
   build: {
     target: 'esnext',

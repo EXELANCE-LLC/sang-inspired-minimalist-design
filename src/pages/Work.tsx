@@ -14,10 +14,21 @@ const Work = () => {
   const { language, t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<any>(null);
 
-  const pageTitle = language === 'tr' ? 'Projeler ve Çalışmalar | Tech Blog' : 'Projects and Work | Tech Blog';
-  const pageDescription = language === 'tr' 
-    ? 'Farklı teknolojiler ve endüstrilerde geliştirdiğim projeler. Web, mobil, AI ve blockchain projeleri.'
-    : 'Projects I have developed in different technologies and industries. Web, mobile, AI and blockchain projects.';
+  // Multi-language page metadata
+  const pageTitles = {
+    en: 'Projects and Work | WebustaLLC',
+    tr: 'Projeler ve Çalışmalar | WebustaLLC',
+    ar: 'المشاريع والأعمال | WebustaLLC'
+  };
+
+  const pageDescriptions = {
+    en: 'Projects I have developed in different technologies and industries. Web, mobile, AI and blockchain projects.',
+    tr: 'Farklı teknolojiler ve endüstrilerde geliştirdiğim projeler. Web, mobil, AI ve blockchain projeleri.',
+    ar: 'المشاريع التي طورتها في تقنيات وصناعات مختلفة. مشاريع الويب والجوال والذكاء الاصطناعي والبلوكشين.'
+  };
+
+  const pageTitle = pageTitles[language as keyof typeof pageTitles] || pageTitles.en;
+  const pageDescription = pageDescriptions[language as keyof typeof pageDescriptions] || pageDescriptions.en;
 
   return (
     <>
@@ -41,6 +52,8 @@ const Work = () => {
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 {language === 'tr' 
                   ? 'Farklı teknolojiler ve endüstrilerde geliştirdiğim projeler'
+                  : language === 'ar'
+                  ? 'المشاريع التي طورتها في تقنيات وصناعات مختلفة'
                   : 'Projects I have developed in different technologies and industries'
                 }
               </p>

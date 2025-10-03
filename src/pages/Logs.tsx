@@ -12,16 +12,16 @@ import { Skeleton } from "@/components/ui/skeleton";
 interface BlogPost {
   id: string;
   slug: string;
-  title: { tr: string; en: string };
-  excerpt: { tr: string; en: string };
+  title: { tr: string; en: string; ar?: string };
+  excerpt: { tr: string; en: string; ar?: string };
   date: string;
-  readTime: { tr: string; en: string };
-  category: { tr: string; en: string };
+  readTime: { tr: string; en: string; ar?: string };
+  category: { tr: string; en: string; ar?: string };
   tags: string[];
   author: {
     name: string;
     avatar: string;
-    bio: { tr: string; en: string };
+    bio: { tr: string; en: string; ar?: string };
   };
   featured: boolean;
   metaImage: string;
@@ -84,10 +84,21 @@ const Logs = () => {
 
   const featuredPosts = blogPosts.filter(post => post.featured);
 
-  const pageTitle = language === 'tr' ? 'Tech Blog - Yazılım, AI ve Teknoloji' : 'Tech Blog - Software, AI and Technology';
-  const pageDescription = language === 'tr' 
-    ? 'Teknoloji, yapay zeka, blockchain, siber güvenlik ve yazılım geliştirme üzerine güncel içerikler ve derinlemesine analizler.'
-    : 'Current content and in-depth analysis on technology, artificial intelligence, blockchain, cybersecurity, and software development.';
+  // Multi-language page metadata
+  const pageTitles = {
+    en: 'WebustaLLC - Software, AI and Technology',
+    tr: 'WebustaLLC - Yazılım, AI ve Teknoloji',
+    ar: 'WebustaLLC - البرمجيات والذكاء الاصطناعي والتكنولوجيا'
+  };
+
+  const pageDescriptions = {
+    en: 'Current content and in-depth analysis on technology, artificial intelligence, blockchain, cybersecurity, and software development.',
+    tr: 'Teknoloji, yapay zeka, blockchain, siber güvenlik ve yazılım geliştirme üzerine güncel içerikler ve derinlemesine analizler.',
+    ar: 'محتوى حالي وتحليل متعمق حول التكنولوجيا والذكاء الاصطناعي والبلوكشين والأمن السيبراني وتطوير البرمجيات.'
+  };
+
+  const pageTitle = pageTitles[language as keyof typeof pageTitles] || pageTitles.en;
+  const pageDescription = pageDescriptions[language as keyof typeof pageDescriptions] || pageDescriptions.en;
 
   if (loading) {
     return (
@@ -155,6 +166,8 @@ const Logs = () => {
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 {language === 'tr' 
                   ? 'Teknoloji, yapay zeka ve yazılım gelişmeleri üzerine düşüncelerim ve deneyimlerim'
+                  : language === 'ar'
+                  ? 'أفكاري وتجاربي حول التكنولوجيا والذكاء الاصطناعي وتطوير البرمجيات'
                   : 'My thoughts and experiences on technology, AI, and software development'
                 }
               </p>
@@ -164,14 +177,14 @@ const Logs = () => {
             {featuredPosts.length > 0 && (
               <div className="mb-12">
                 <h2 className="text-2xl font-medium mb-6 text-center">
-                  {language === 'tr' ? 'Öne Çıkan Makaleler' : 'Featured Articles'}
+                  {language === 'tr' ? 'Öne Çıkan Makaleler' : language === 'ar' ? 'المقالات المميزة' : 'Featured Articles'}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {featuredPosts.map((post) => {
-                    const title = post.title[language as keyof typeof post.title] || post.title.tr;
-                    const excerpt = post.excerpt[language as keyof typeof post.excerpt] || post.excerpt.tr;
-                    const readTime = post.readTime[language as keyof typeof post.readTime] || post.readTime.tr;
-                    const category = post.category[language as keyof typeof post.category] || post.category.tr;
+                    const title = post.title[language as keyof typeof post.title] || post.title.en || post.title.tr;
+                    const excerpt = post.excerpt[language as keyof typeof post.excerpt] || post.excerpt.en || post.excerpt.tr;
+                    const readTime = post.readTime[language as keyof typeof post.readTime] || post.readTime.en || post.readTime.tr;
+                    const category = post.category[language as keyof typeof post.category] || post.category.en || post.category.tr;
                     
                     return (
                       <Link key={post.id} to={`/blog/${post.slug}`} className="group">
@@ -234,7 +247,7 @@ const Logs = () => {
                   className=""
                 >
                   {category === "all" 
-                    ? (language === 'tr' ? "Tümü" : "All")
+                    ? (language === 'tr' ? "Tümü" : language === 'ar' ? "الكل" : "All")
                     : category
                   }
                 </Button>
@@ -244,10 +257,10 @@ const Logs = () => {
             {/* All Posts */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPosts.map((post) => {
-                const title = post.title[language as keyof typeof post.title] || post.title.tr;
-                const excerpt = post.excerpt[language as keyof typeof post.excerpt] || post.excerpt.tr;
-                const readTime = post.readTime[language as keyof typeof post.readTime] || post.readTime.tr;
-                const category = post.category[language as keyof typeof post.category] || post.category.tr;
+                const title = post.title[language as keyof typeof post.title] || post.title.en || post.title.tr;
+                const excerpt = post.excerpt[language as keyof typeof post.excerpt] || post.excerpt.en || post.excerpt.tr;
+                const readTime = post.readTime[language as keyof typeof post.readTime] || post.readTime.en || post.readTime.tr;
+                const category = post.category[language as keyof typeof post.category] || post.category.en || post.category.tr;
                 
                 return (
                   <Link key={post.id} to={`/blog/${post.slug}`} className="group">

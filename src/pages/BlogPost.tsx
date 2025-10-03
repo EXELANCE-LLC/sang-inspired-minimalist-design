@@ -14,21 +14,21 @@ import { Skeleton } from "@/components/ui/skeleton";
 interface BlogPostData {
   id: string;
   slug: string;
-  title: { tr: string; en: string };
-  excerpt: { tr: string; en: string };
-  content: { tr: string; en: string };
+  title: { tr: string; en: string; ar?: string };
+  excerpt: { tr: string; en: string; ar?: string };
+  content: { tr: string; en: string; ar?: string };
   date: string;
-  readTime: { tr: string; en: string };
-  category: { tr: string; en: string };
+  readTime: { tr: string; en: string; ar?: string };
+  category: { tr: string; en: string; ar?: string };
   tags: string[];
   author: {
     name: string;
     avatar: string;
-    bio: { tr: string; en: string };
+    bio: { tr: string; en: string; ar?: string };
   };
   featured: boolean;
-  metaTitle: { tr: string; en: string };
-  metaDescription: { tr: string; en: string };
+  metaTitle: { tr: string; en: string; ar?: string };
+  metaDescription: { tr: string; en: string; ar?: string };
   metaImage: string;
   references: Array<{
     title: string;
@@ -123,11 +123,13 @@ const BlogPost = () => {
       <div className="min-h-screen bg-gradient-soft">
         {/* Navigation is global */}
         <div className="pt-32 pb-16 px-8 text-center">
-          <h1 className="text-4xl font-light mb-4">Blog yazısı bulunamadı</h1>
+          <h1 className="text-4xl font-light mb-4">
+            {language === 'tr' ? 'Blog yazısı bulunamadı' : language === 'ar' ? 'لم يتم العثور على المقالة' : 'Blog post not found'}
+          </h1>
           <Link to="/blog">
             <Button variant="outline">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Blog'a dön
+              {language === 'tr' ? "Blog'a dön" : language === 'ar' ? 'العودة إلى المدونة' : 'Back to Blog'}
             </Button>
           </Link>
         </div>
@@ -135,14 +137,14 @@ const BlogPost = () => {
     );
   }
 
-  const title = post.title[language as keyof typeof post.title] || post.title.tr;
-  const content = post.content[language as keyof typeof post.content] || post.content.tr;
-  const excerpt = post.excerpt[language as keyof typeof post.excerpt] || post.excerpt.tr;
-  const readTime = post.readTime[language as keyof typeof post.readTime] || post.readTime.tr;
-  const category = post.category[language as keyof typeof post.category] || post.category.tr;
-  const authorBio = post.author.bio[language as keyof typeof post.author.bio] || post.author.bio.tr;
-  const metaTitle = post.metaTitle[language as keyof typeof post.metaTitle] || post.metaTitle.tr;
-  const metaDescription = post.metaDescription[language as keyof typeof post.metaDescription] || post.metaDescription.tr;
+  const title = post.title[language as keyof typeof post.title] || post.title.en || post.title.tr;
+  const content = post.content[language as keyof typeof post.content] || post.content.en || post.content.tr;
+  const excerpt = post.excerpt[language as keyof typeof post.excerpt] || post.excerpt.en || post.excerpt.tr;
+  const readTime = post.readTime[language as keyof typeof post.readTime] || post.readTime.en || post.readTime.tr;
+  const category = post.category[language as keyof typeof post.category] || post.category.en || post.category.tr;
+  const authorBio = post.author.bio[language as keyof typeof post.author.bio] || post.author.bio.en || post.author.bio.tr;
+  const metaTitle = post.metaTitle[language as keyof typeof post.metaTitle] || post.metaTitle.en || post.metaTitle.tr;
+  const metaDescription = post.metaDescription[language as keyof typeof post.metaDescription] || post.metaDescription.en || post.metaDescription.tr;
 
   return (
     <>
@@ -287,7 +289,9 @@ const BlogPost = () => {
 
             {/* Tags */}
             <div className="mb-12">
-              <h3 className="text-lg font-medium mb-4">Etiketler</h3>
+              <h3 className="text-lg font-medium mb-4">
+                {language === 'tr' ? 'Etiketler' : language === 'ar' ? 'العلامات' : 'Tags'}
+              </h3>
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag, index) => (
                   <Badge key={index} variant="secondary">
@@ -303,7 +307,9 @@ const BlogPost = () => {
               <>
                 <Separator className="my-12" />
                 <div className="mb-12">
-                  <h3 className="text-lg font-medium mb-4">Kaynaklar ve Referanslar</h3>
+                  <h3 className="text-lg font-medium mb-4">
+                    {language === 'tr' ? 'Kaynaklar ve Referanslar' : language === 'ar' ? 'المصادر والمراجع' : 'References and Sources'}
+                  </h3>
                   <ul className="space-y-3">
                     {post.references.map((ref, index) => (
                       <li key={index} className="flex items-start gap-2">
@@ -332,12 +338,14 @@ const BlogPost = () => {
               <>
                 <Separator className="my-12" />
                 <div>
-                  <h3 className="text-2xl font-medium mb-6">İlgili Yazılar</h3>
+                  <h3 className="text-2xl font-medium mb-6">
+                    {language === 'tr' ? 'İlgili Yazılar' : language === 'ar' ? 'المقالات ذات الصلة' : 'Related Posts'}
+                  </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {relatedPosts.map((relatedPost) => {
-                      const relatedTitle = relatedPost.title[language as keyof typeof relatedPost.title] || relatedPost.title.tr;
-                      const relatedExcerpt = relatedPost.excerpt[language as keyof typeof relatedPost.excerpt] || relatedPost.excerpt.tr;
-                      const relatedReadTime = relatedPost.readTime[language as keyof typeof relatedPost.readTime] || relatedPost.readTime.tr;
+                      const relatedTitle = relatedPost.title[language as keyof typeof relatedPost.title] || relatedPost.title.en || relatedPost.title.tr;
+                      const relatedExcerpt = relatedPost.excerpt[language as keyof typeof relatedPost.excerpt] || relatedPost.excerpt.en || relatedPost.excerpt.tr;
+                      const relatedReadTime = relatedPost.readTime[language as keyof typeof relatedPost.readTime] || relatedPost.readTime.en || relatedPost.readTime.tr;
                       
                       return (
                         <Link
@@ -348,7 +356,7 @@ const BlogPost = () => {
                           <div className="bg-card rounded-lg p-6 shadow-soft hover-float h-full">
                             <div className="flex items-center justify-between mb-3">
                               <Badge variant="secondary" className="text-xs">
-                                {relatedPost.category[language as keyof typeof relatedPost.category] || relatedPost.category.tr}
+                                {relatedPost.category[language as keyof typeof relatedPost.category] || relatedPost.category.en || relatedPost.category.tr}
                               </Badge>
                               <div className="flex items-center text-xs text-muted-foreground">
                                 <Clock className="w-3 h-3 mr-1" />

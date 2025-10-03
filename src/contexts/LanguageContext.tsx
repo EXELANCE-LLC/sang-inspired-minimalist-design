@@ -277,7 +277,7 @@ const detectLanguage = async (): Promise<string> => {
 };
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<string>('tr');
+  const [language, setLanguage] = useState<string>('en');
 
   useEffect(() => {
     const initializeLanguage = async () => {
@@ -301,7 +301,7 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
         }
       } catch (error) {
         console.warn('Language detection failed, using default:', error);
-        setLanguage('tr'); // Fallback to Turkish
+        setLanguage('en'); // Fallback to English
       }
     };
 

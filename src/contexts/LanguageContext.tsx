@@ -206,102 +206,95 @@ export const useLanguage = () => {
   return context;
 };
 
-const detectLanguage = async (): Promise<string> => {
+const detectLanguage = (): string => {
   try {
-    // Get browser language preferences
+    // Get browser language preferences (most reliable)
     const browserLangs = navigator.languages || [navigator.language];
-    const primaryLang = browserLangs[0]?.split('-')[0];
-
-    // Get timezone information
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-    // Check for Turkey
-    const isTurkiye = timezone.includes('Istanbul') || timezone.includes('Europe/Istanbul') ||
-                     timezone.includes('Asia/Istanbul') || timezone.includes('Turkey');
-
-    // Check for Arabic countries
-    const isArabicCountry = timezone.includes('Asia/Riyadh') || timezone.includes('Asia/Dubai') ||
-                           timezone.includes('Africa/Cairo') || timezone.includes('Asia/Baghdad') ||
-                           timezone.includes('Asia/Amman') || timezone.includes('Asia/Beirut');
-
-    // Try to get geolocation for more accurate detection
-    let countryCode = '';
-    try {
-      const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000 });
-      });
-
-      // In a real app, you'd use a reverse geocoding service here
-      // For now, we'll use timezone-based detection
-    } catch (error) {
-      // Geolocation failed, continue with other methods
+    
+    console.log('Browser languages:', browserLangs);
+    
+    // Check each browser language preference in order
+    for (const lang of browserLangs) {
+      const langCode = lang.split('-')[0].toLowerCase();
+      
+      // Direct matches for our supported languages
+      if (langCode === 'tr') {
+        console.log('Detected Turkish from browser language');
+        return 'tr';
+      }
+      if (langCode === 'ar') {
+        console.log('Detected Arabic from browser language');
+        return 'ar';
+      }
+      if (langCode === 'en') {
+        console.log('Detected English from browser language');
+        return 'en';
+      }
     }
 
-    // Language detection priority:
-    // 1. Browser language preference
-    // 2. Location-based detection
-    // 3. Fallback to defaults
+    // Secondary: Check timezone as a hint (less reliable but helpful)
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    console.log('Timezone:', timezone);
 
-    // Direct language matches
-    if (primaryLang === 'tr') return 'tr';
-    if (primaryLang === 'ar') return 'ar';
-    if (primaryLang === 'en') return 'en';
+    // Turkey timezone
+    if (timezone.includes('Istanbul') || timezone.includes('Turkey')) {
+      console.log('Detected Turkey from timezone');
+      return 'tr';
+    }
 
-    // Check for Arabic language variants
-    if (browserLangs.some(lang => lang.startsWith('ar'))) return 'ar';
+    // Arabic countries timezones
+    const arabicTimezones = [
+      'Riyadh', 'Dubai', 'Cairo', 'Baghdad', 'Amman', 'Beirut', 
+      'Damascus', 'Kuwait', 'Qatar', 'Bahrain', 'Muscat', 'Aden'
+    ];
+    
+    if (arabicTimezones.some(tz => timezone.includes(tz))) {
+      console.log('Detected Arabic region from timezone');
+      return 'ar';
+    }
 
-    // Location-based defaults
-    if (isTurkiye) return 'tr';
-    if (isArabicCountry) return 'ar';
-
-    // Check if user is in Turkey or Arabic countries based on language
-    const turkicLanguages = ['tr', 'az', 'kk', 'uz', 'tk'];
-    const arabicLanguages = ['ar', 'fa', 'ur'];
-
-    if (turkicLanguages.includes(primaryLang)) return 'tr';
-    if (arabicLanguages.includes(primaryLang)) return 'ar';
-
-    // Default to English for other locations
+    // Default to English
+    console.log('No specific language detected, using English as default');
     return 'en';
 
   } catch (error) {
-    // Fallback to browser language only
-    const browserLang = navigator.language.split('-')[0];
-
-    if (browserLang === 'tr') return 'tr';
-    if (browserLang === 'ar') return 'ar';
-
-    // Default fallback
+    console.error('Language detection error:', error);
+    // Fallback to English
     return 'en';
   }
 };
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguage] = useState<string>('en');
+  const [language, setLanguageState] = useState<string>('en');
+
+  // Custom setLanguage that saves to localStorage
+  const setLanguage = (lang: string) => {
+    console.log('💾 Saving language preference:', lang);
+    setLanguageState(lang);
+    localStorage.setItem('preferredLanguage', lang);
+  };
 
   useEffect(() => {
-    const initializeLanguage = async () => {
+    const initializeLanguage = () => {
       try {
-        // Check URL for language preference
-        const urlPath = window.location.pathname;
-        const urlLangMatch = urlPath.match(/^\/(en|tr|ar)(\/|$)/);
-        
-        if (urlLangMatch) {
-          setLanguage(urlLangMatch[1]);
-        } else {
-          // Check localStorage for saved preference
-          const savedLang = localStorage.getItem('preferredLanguage');
-          if (savedLang && ['tr', 'en', 'ar'].includes(savedLang)) {
-            setLanguage(savedLang);
-          } else {
-            // Auto-detect language
-            const detectedLang = await detectLanguage();
-            setLanguage(detectedLang);
-          }
+        // Priority 1: Check localStorage for saved user preference
+        const savedLang = localStorage.getItem('preferredLanguage');
+        if (savedLang && ['tr', 'en', 'ar'].includes(savedLang)) {
+          console.log('✅ Using saved language preference:', savedLang);
+          setLanguageState(savedLang);
+          return;
         }
+
+        // Priority 2: Auto-detect language from browser/system
+        const detectedLang = detectLanguage();
+        console.log('✅ Using detected language:', detectedLang);
+        setLanguageState(detectedLang);
+        
+        // Don't save auto-detected language to localStorage
+        // Only save when user manually changes language
       } catch (error) {
-        console.warn('Language detection failed, using default:', error);
-        setLanguage('en'); // Fallback to English
+        console.warn('⚠️ Language detection failed, using default:', error);
+        setLanguageState('en'); // Priority 3: Fallback to English
       }
     };
 
@@ -342,8 +335,6 @@ export const LanguageProvider = ({ children }: { children: React.ReactNode }) =>
   useEffect(() => {
     document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
     document.documentElement.lang = language;
-    // Save language preference
-    localStorage.setItem('preferredLanguage', language);
   }, [language, isRTL]);
 
   return (

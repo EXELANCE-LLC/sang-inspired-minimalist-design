@@ -10,6 +10,15 @@
       ]
     },
     {
+      "source": "/sitemap.xsl",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xslt+xml; charset=utf-8"
+        }
+      ]
+    },
+    {
       "source": "/robots.txt",
       "headers": [
         {

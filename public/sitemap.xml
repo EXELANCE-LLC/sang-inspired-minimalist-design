@@ -30,12 +30,21 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://webusta.org/blog"/>
-    <lastmod>2025-10-03</lastmod>
+    <lastmod>2025-10-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   
   <!-- Blog Posts -->
+  <url>
+    <loc>https://webusta.org/blog/docker-stability-coldstart-optimization</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/docker-stability-coldstart-optimization"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://webusta.org/blog/docker-stability-coldstart-optimization"/>
+    <lastmod>2025-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <url>
     <loc>https://webusta.org/blog/ai-and-future-software-development</loc>
     <xhtml:link rel="alternate" hreflang="tr" href="https://webusta.org/blog/ai-and-future-software-development"/>

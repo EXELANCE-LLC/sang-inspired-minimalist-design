@@ -17,6 +17,25 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
+      "headline": "Docker Konteyner Stabilitesi ve Cold-Start Optimizasyonu: Enterprise-Grade Konfigürasyonlar",
+      "alternativeHeadline": "Docker Container Stability and Cold-Start Optimization: Enterprise-Grade Configurations",
+      "datePublished": "2025-10-05",
+      "dateModified": "2025-10-05",
+      "author": {
+        "@type": "Person",
+        "name": "Mesut Büyükyıldız"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Webusta LLC"
+      },
+      "image": "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=1200&q=80",
+      "articleSection": "DevOps & Container Teknolojileri",
+      "keywords": ["Docker", "Containers", "Kubernetes", "DevOps", "Performance", "Security", "Cold-Start", "Kernel"],
+      "url": "https://webusta.org/blog/docker-stability-coldstart-optimization"
+    },
+    {
+      "@type": "BlogPosting",
       "headline": "Yapay Zeka ve Geleceğin Yazılım Geliştirme Pratikleri",
       "alternativeHeadline": "AI and Future Software Development Practices",
       "datePublished": "2025-10-01",

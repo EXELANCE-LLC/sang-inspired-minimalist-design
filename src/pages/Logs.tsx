@@ -38,6 +38,7 @@ const Logs = () => {
       try {
         setLoading(true);
         const blogFiles = [
+          '9-docker-stability-coldstart-optimization.json',
           '1-ai-and-future-software-development.json',
           '2-web3-blockchain-current-state.json',
           '3-microservices-modern-backend.json',
